@@ -13,6 +13,9 @@ on:
         required: false
         default: 'Manual refresh'
 
+permissions:
+  contents: write
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -54,7 +57,7 @@ jobs:
           git add src/data/plugins.json
 
           # Create commit message
-          PLUGIN_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('src/data/plugins.json', 'utf8')).value.length")
+          PLUGIN_COUNT=$(jq '.value | length' src/data/plugins.json)
           COMMIT_MSG="chore: refresh plugin data (${PLUGIN_COUNT} plugins)"
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
