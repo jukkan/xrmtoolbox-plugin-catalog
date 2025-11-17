@@ -49,6 +49,7 @@ Automated workflow that:
 - **Can be triggered manually** from the GitHub Actions tab
 - Automatically commits and pushes changes if plugin data is updated
 - Only creates commits when actual changes are detected
+- Has write permissions to commit changes back to the repository
 
 **Manual Trigger:**
 1. Go to your GitHub repository
