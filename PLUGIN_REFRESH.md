@@ -11,15 +11,18 @@ https://www.xrmtoolbox.com/_odata/plugins
 
 This endpoint requires no authentication and returns plugin information in OData JSON format.
 
+**Note**: The endpoint uses pagination (typically 200 plugins per page). The refresh script automatically fetches all pages to ensure complete data.
+
 ## System Components
 
 ### 1. Refresh Script (`scripts/refresh-plugins.js`)
 
 A Node.js script that:
 - Fetches the latest plugin data from the OData endpoint
+- **Handles OData pagination** to fetch all plugins across multiple pages
 - Validates the response structure
 - Updates `src/data/plugins.json` with proper formatting
-- Displays statistics about the plugins
+- Displays statistics about the plugins and pages fetched
 
 **Usage:**
 ```bash
