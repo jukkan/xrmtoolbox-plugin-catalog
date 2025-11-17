@@ -62,7 +62,29 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/8afc1288-dc6b-41ee-85d6-e9ee544548b6) and click on Share -> Publish.
+### GitHub Pages (Recommended)
+
+The project is configured to automatically deploy to GitHub Pages on every push to the main branch.
+
+**Initial Setup** (one-time):
+1. Go to your repository settings
+2. Navigate to "Pages" in the left sidebar
+3. Under "Build and deployment" → "Source", select "GitHub Actions"
+4. The site will be available at: `https://jukkan.github.io/xrmtoolbox-plugin-catalog/`
+
+**Automatic Deployment:**
+- Every push to the `main` branch triggers an automatic deployment
+- You can also manually trigger deployment from the Actions tab
+
+### Lovable Hosting (Alternative)
+
+You can also deploy via Lovable by opening the [Lovable Project](https://lovable.dev/projects/8afc1288-dc6b-41ee-85d6-e9ee544548b6) and clicking Share → Publish.
+
+### Ubuntu VPS Deployment
+
+For detailed instructions on deploying to your Ubuntu VPS with Nginx, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+📖 **Full deployment documentation**: [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## Can I connect a custom domain to my Lovable project?
 

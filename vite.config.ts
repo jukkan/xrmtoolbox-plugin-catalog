@@ -15,4 +15,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Set base URL for GitHub Pages deployment
+  base: mode === "production" ? "/xrmtoolbox-plugin-catalog/" : "/",
 }));
