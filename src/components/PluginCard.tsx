@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { StarRating } from "./StarRating";
-import { Download, Github, Calendar, User } from "lucide-react";
+import { Download, Github, Calendar, User, Globe } from "lucide-react";
 import { format } from "date-fns";
 
 export interface Plugin {
@@ -48,6 +48,32 @@ export const PluginCard = ({ plugin, onViewDetails }: PluginCardProps) => {
     }
   };
 
+  const isGitHubUrl = (url: string) => {
+    return url.toLowerCase().includes('github.com');
+  };
+
+  const getDownloadPercentage = (count: number) => {
+    // Logarithmic scale for better visual distribution
+    // Max expected: 1M downloads = 100%
+    const maxDownloads = 1000000;
+    const percentage = Math.min((count / maxDownloads) * 100, 100);
+    return percentage;
+  };
+
+  const getUpdateFreshness = (dateString: string) => {
+    try {
+      const updateDate = new Date(dateString);
+      const now = new Date();
+      const daysDiff = Math.floor((now.getTime() - updateDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (daysDiff < 90) return { color: 'bg-green-500', label: 'Recently updated' };
+      if (daysDiff < 365) return { color: 'bg-yellow-500', label: 'Moderately updated' };
+      return { color: 'bg-gray-400', label: 'Not recently updated' };
+    } catch {
+      return { color: 'bg-gray-400', label: 'Unknown' };
+    }
+  };
+
   return (
     <Card className="h-full transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 group">
       <CardHeader className="space-y-3">
@@ -89,7 +115,11 @@ export const PluginCard = ({ plugin, onViewDetails }: PluginCardProps) => {
                 window.open(plugin.mctools_projecturl, '_blank');
               }}
             >
-              <Github size={14} />
+              {isGitHubUrl(plugin.mctools_projecturl) ? (
+                <Github size={14} />
+              ) : (
+                <Globe size={14} />
+              )}
             </Button>
           )}
         </div>
@@ -117,15 +147,44 @@ export const PluginCard = ({ plugin, onViewDetails }: PluginCardProps) => {
 
         <div className="space-y-2">
           <StarRating rating={parseFloat(plugin.mctools_averagefeedbackratingallversions)} />
-          
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <Download size={14} />
-              {formatNumber(plugin.mctools_totaldownloadcount)}
+
+          <div className="space-y-3">
+            {/* Download Count with Visualization */}
+            <div className="space-y-1">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-1 text-muted-foreground">
+                  <Download size={14} />
+                  <span>Downloads</span>
+                </div>
+                <span className="font-medium">
+                  {formatNumber(plugin.mctools_totaldownloadcount)}
+                </span>
+              </div>
+              <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-primary/60 to-primary transition-all"
+                  style={{ width: `${getDownloadPercentage(plugin.mctools_totaldownloadcount)}%` }}
+                />
+              </div>
             </div>
-            <div className="flex items-center gap-1">
-              <Calendar size={14} />
-              {formatDate(plugin.mctools_latestreleasedate)}
+
+            {/* Update Date with Freshness Indicator */}
+            <div className="space-y-1">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-1 text-muted-foreground">
+                  <Calendar size={14} />
+                  <span>Last Update</span>
+                </div>
+                <span className="font-medium">
+                  {formatDate(plugin.mctools_latestreleasedate)}
+                </span>
+              </div>
+              <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                <div
+                  className={`h-full ${getUpdateFreshness(plugin.mctools_latestreleasedate).color} transition-all`}
+                  style={{ width: '100%' }}
+                />
+              </div>
             </div>
           </div>
         </div>
