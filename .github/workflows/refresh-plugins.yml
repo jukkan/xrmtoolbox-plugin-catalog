@@ -1,0 +1,75 @@
+name: Refresh Plugin Data
+
+on:
+  # Run daily at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual refresh'
+        required: false
+        default: 'Manual refresh'
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Use a token that can trigger workflows
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run refresh script
+        id: refresh
+        run: |
+          echo "Running plugin data refresh..."
+          node scripts/refresh-plugins.js
+
+          # Check if there are changes
+          if git diff --quiet src/data/plugins.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in plugin data"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in plugin data"
+          fi
+
+      - name: Commit and push changes
+        if: steps.refresh.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add the updated file
+          git add src/data/plugins.json
+
+          # Create commit message
+          PLUGIN_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('src/data/plugins.json', 'utf8')).value.length")
+          COMMIT_MSG="chore: refresh plugin data (${PLUGIN_COUNT} plugins)"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            COMMIT_MSG="${COMMIT_MSG} - ${{ github.event.inputs.reason }}"
+          else
+            COMMIT_MSG="${COMMIT_MSG} - scheduled update"
+          fi
+
+          git commit -m "$COMMIT_MSG"
+          git push
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.refresh.outputs.changed }}" = "true" ]; then
+            echo "✅ Plugin data was updated and committed"
+          else
+            echo "ℹ️ Plugin data is already up to date"
+          fi
