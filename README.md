@@ -71,3 +71,26 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Plugin Data Management
+
+This catalog automatically syncs with the [XrmToolBox OData feed](https://www.xrmtoolbox.com/_odata/plugins) to keep plugin information up-to-date.
+
+### Automated Updates
+
+- **Daily Refresh**: Plugin data is automatically updated every day at 2 AM UTC via GitHub Actions
+- **Manual Refresh**: Trigger an update anytime from the GitHub Actions tab
+
+### Manual Refresh Commands
+
+For development or immediate updates:
+
+```sh
+# Quick refresh
+npm run refresh-plugins
+
+# Refresh and commit changes
+./scripts/refresh.sh --commit
+```
+
+📖 For detailed documentation on the refresh system, see [PLUGIN_REFRESH.md](./PLUGIN_REFRESH.md)
