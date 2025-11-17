@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { StarRating } from "./StarRating";
 import { Plugin } from "./PluginCard";
-import { Download, Github, Calendar, User, Package, ExternalLink } from "lucide-react";
+import { Download, Github, Calendar, User, Package, ExternalLink, Globe } from "lucide-react";
 import { format } from "date-fns";
 
 interface PluginDetailsProps {
@@ -32,6 +32,10 @@ export const PluginDetails = ({ plugin, open, onClose }: PluginDetailsProps) => 
     } catch {
       return 'Unknown';
     }
+  };
+
+  const isGitHubUrl = (url: string) => {
+    return url.toLowerCase().includes('github.com');
   };
 
   return (
@@ -123,25 +127,20 @@ export const PluginDetails = ({ plugin, open, onClose }: PluginDetailsProps) => 
             </div>
           </div>
 
-          <div className="flex gap-3">
-            {plugin.mctools_projecturl && (
-              <Button
-                variant="outline"
-                className="flex-1"
-                onClick={() => window.open(plugin.mctools_projecturl, '_blank')}
-              >
-                <Github size={16} className="mr-2" />
-                View on GitHub
-              </Button>
-            )}
+          {plugin.mctools_projecturl && (
             <Button
-              className="flex-1"
-              onClick={() => window.open(plugin.mctools_downloadurl, '_blank')}
+              variant="default"
+              className="w-full"
+              onClick={() => window.open(plugin.mctools_projecturl, '_blank')}
             >
-              <ExternalLink size={16} className="mr-2" />
-              Download Plugin
+              {isGitHubUrl(plugin.mctools_projecturl) ? (
+                <Github size={16} className="mr-2" />
+              ) : (
+                <Globe size={16} className="mr-2" />
+              )}
+              View Tool Details
             </Button>
-          </div>
+          )}
 
           <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
             <div>
