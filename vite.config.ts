@@ -17,5 +17,5 @@ export default defineConfig(({ mode }) => ({
   },
   // Set base URL for GitHub Pages deployment
   // In development, use root; in production (including build), use the repo path
-  base: process.env.NODE_ENV === "development" ? "/" : "/xrmtoolbox-plugin-catalog/",
+  base: mode === "production" ? "/xrmtoolbox-plugin-catalog/" : "/",
 }));
