@@ -118,6 +118,23 @@
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  /* Prevent viewport expansion from content */
+  #root {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Handle long text and word breaking */
+  p, div, span, h1, h2, h3, h4, h5, h6, li, td, th, label {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
