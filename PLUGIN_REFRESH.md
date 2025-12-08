@@ -64,9 +64,9 @@ Automated workflow that:
 
 ## Deployment Scenarios
 
-### Development (Lovable Hosting)
+### Development
 
-For on-demand refresh during development:
+For on-demand refresh during local development:
 
 ```bash
 # Quick refresh
@@ -76,6 +76,10 @@ npm run refresh-plugins
 ./scripts/refresh.sh --commit
 git push
 ```
+
+### Production (GitHub Pages)
+
+The recommended deployment approach uses GitHub Pages with automatic plugin data refresh via GitHub Actions (already configured). No additional setup needed - the workflow runs daily and deploys automatically.
 
 ### Production (Ubuntu VPS with Nginx)
 
