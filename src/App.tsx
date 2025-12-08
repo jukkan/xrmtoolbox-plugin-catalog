@@ -2,9 +2,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { StorePage } from "./pages/StorePage";
+import { PluginDetailPage } from "./pages/PluginDetailPage";
+import { CategoryPage } from "./pages/CategoryPage";
+import { AuthorPage } from "./pages/AuthorPage";
+import { ChartsPage } from "./pages/ChartsPage";
 
 const queryClient = new QueryClient();
 
@@ -15,8 +20,20 @@ const App = () => (
       <Sonner />
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* Default to store view */}
+          <Route path="/" element={<Navigate to="/store" replace />} />
+
+          {/* Store routes */}
+          <Route path="/store" element={<StorePage />} />
+          <Route path="/store/plugin/:nugetId" element={<PluginDetailPage />} />
+          <Route path="/store/category/:categoryId" element={<CategoryPage />} />
+          <Route path="/store/author/:authorName" element={<AuthorPage />} />
+          <Route path="/store/charts" element={<ChartsPage />} />
+
+          {/* Feed view (original) */}
+          <Route path="/feed" element={<Index />} />
+
+          {/* Catch-all 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
