@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Set base URL for GitHub Pages deployment
-  // In development, use root; in production (including build), use the repo path
-  base: mode === "production" ? "/xrmtoolbox-plugin-catalog/" : "/",
+  // Set base URL for GitHub Pages deployment with custom domain
+  // Custom domain (xrm.jukkan.com) uses root path
+  base: "/",
 }));

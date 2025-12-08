@@ -70,7 +70,7 @@ The project is configured to automatically deploy to GitHub Pages on every push 
 1. Go to your repository settings
 2. Navigate to "Pages" in the left sidebar
 3. Under "Build and deployment" → "Source", select "GitHub Actions"
-4. The site will be available at: `https://jukkan.github.io/xrmtoolbox-plugin-catalog/`
+4. The site will be available at: `https://xrm.jukkan.com`
 
 **Automatic Deployment:**
 - Every push to the `main` branch triggers an automatic deployment

@@ -21,7 +21,7 @@ This document covers all deployment options for the XrmToolBox Plugin Catalog.
      - Click "Run workflow"
 
 3. **Access Your Site**:
-   - Your site will be available at: `https://jukkan.github.io/xrmtoolbox-plugin-catalog/`
+   - Your site will be available at: `https://xrm.jukkan.com`
    - The URL will be shown in the workflow run output
 
 ### Automatic Deployments
@@ -43,10 +43,10 @@ The site automatically deploys when:
 
 The Vite configuration (`vite.config.ts`) includes:
 ```typescript
-base: mode === "production" ? "/xrmtoolbox-plugin-catalog/" : "/"
+base: "/"
 ```
 
-This ensures all asset paths are correct for the GitHub Pages subdirectory.
+This ensures all asset paths are correct for the custom domain (xrm.jukkan.com).
 
 ## Ubuntu VPS Deployment (Alternative)
 
