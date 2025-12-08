@@ -142,31 +142,79 @@
   .gradient-primary {
     background: var(--gradient-primary);
   }
-  
+
   .gradient-accent {
     background: var(--gradient-accent);
   }
-  
+
   .gradient-hero {
     background: var(--gradient-hero);
   }
-  
+
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
-  
+
   .shadow-card-hover {
     box-shadow: var(--shadow-card-hover);
   }
-  
+
   .shadow-xl {
     box-shadow: var(--shadow-xl);
   }
-  
+
   .text-gradient {
     background: var(--gradient-hero);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Store-specific styles */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Smooth scroll snap for carousels */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Touch scrolling for mobile */
+  .-webkit-overflow-scrolling-touch {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Store card hover effects */
+  .store-card {
+    @apply transition-all duration-300;
+  }
+
+  .store-card:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  /* Hero carousel dots */
+  .carousel-dot {
+    @apply w-2 h-2 rounded-full transition-all;
+  }
+
+  .carousel-dot-active {
+    @apply w-6 bg-primary;
+  }
+
+  /* Category chip styles */
+  .category-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all;
+    @apply border hover:border-primary/50;
+  }
+
+  .category-chip-active {
+    @apply bg-primary text-primary-foreground border-primary;
   }
 }
