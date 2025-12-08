@@ -172,31 +172,21 @@ Create webhook configuration (`/etc/webhook.conf`):
 
 Then configure GitHub webhook in repository settings.
 
-## Lovable Hosting
-
-For quick previews and development:
-
-1. Go to [Lovable Project](https://lovable.dev/projects/8afc1288-dc6b-41ee-85d6-e9ee544548b6)
-2. Click "Share" → "Publish"
-3. Site will be available at Lovable's provided URL
-
-**Note**: Lovable is convenient for development but GitHub Pages or VPS hosting is recommended for production.
-
 ## Comparison
 
-| Feature | GitHub Pages | VPS | Lovable |
-|---------|--------------|-----|---------|
-| Cost | Free | VPS cost | Free tier available |
-| Setup Complexity | Easy | Medium | Very Easy |
-| Custom Domain | Yes (free) | Yes | Yes (paid) |
-| SSL/HTTPS | Automatic | Manual setup | Automatic |
-| Automatic Deployment | Yes | Requires setup | Yes |
-| Build Time | ~2-3 min | Instant (after build) | ~1-2 min |
-| Recommended For | Production | Full control needed | Development |
+| Feature | GitHub Pages | VPS |
+|---------|--------------|-----|
+| Cost | Free | VPS cost |
+| Setup Complexity | Easy | Medium |
+| Custom Domain | Yes (free) | Yes |
+| SSL/HTTPS | Automatic | Manual setup |
+| Automatic Deployment | Yes | Requires setup |
+| Build Time | ~2-3 min | Instant (after build) |
+| Recommended For | Production | Full control needed |
 
 ## Recommended Approach
 
-1. **Development**: Use Lovable or local dev server (`npm run dev`)
+1. **Development**: Use local dev server (`npm run dev`)
 2. **Staging/Preview**: Use GitHub Pages from feature branches
 3. **Production**: Use GitHub Pages (simplest) or VPS (more control)
 
