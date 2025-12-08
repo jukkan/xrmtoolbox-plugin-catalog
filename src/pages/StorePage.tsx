@@ -12,7 +12,6 @@ import {
   getRecentlyUpdated,
   getMostPopular,
   getTopRated,
-  getOpenSourcePlugins,
   getMvpPlugins,
   filterPlugins
 } from "@/utils/pluginUtils";
@@ -46,12 +45,6 @@ export function StorePage() {
   // Get top rated plugins
   const topRated = useMemo(
     () => getTopRated(plugins, 3).slice(0, 15),
-    [plugins]
-  );
-
-  // Get open source plugins
-  const openSource = useMemo(
-    () => getMostPopular(getOpenSourcePlugins(plugins)).slice(0, 15),
     [plugins]
   );
 
@@ -111,7 +104,6 @@ export function StorePage() {
     <StoreLayout
       plugins={plugins}
       showHero={true}
-      heroContent={<HeroCarousel plugins={featuredPlugins} />}
     >
       <div className="space-y-12">
         {/* Category Quick Access */}
@@ -141,11 +133,11 @@ export function StorePage() {
           seeAllLink="/store/charts?sort=rating"
         />
 
-        {/* Open Source Picks */}
-        <PluginCarousel
-          title="Open Source Picks"
-          plugins={openSource}
-        />
+        {/* Featured Plugins */}
+        <section>
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Featured</h2>
+          <HeroCarousel plugins={featuredPlugins} />
+        </section>
 
         {/* MVP Developer Picks */}
         {mvpPicks.length > 0 && (

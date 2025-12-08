@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { PluginCard, Plugin } from "@/components/PluginCard";
 import { PluginDetails } from "@/components/PluginDetails";
 import { SearchAndFilters } from "@/components/SearchAndFilters";
+import { ViewToggle } from "@/components/store/ViewToggle";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Sparkles } from "lucide-react";
 import pluginsData from "@/data/plugins.json";
@@ -90,7 +91,7 @@ const Index = () => {
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
             Discover powerful plugins for Microsoft Power Platform development and administration
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <div className="text-lg">
               <span className="font-semibold">{plugins.length.toLocaleString()}</span> plugins available
             </div>
@@ -102,6 +103,10 @@ const Index = () => {
             <div className="text-lg">
               Built for Power Platform
             </div>
+          </div>
+          {/* View Toggle */}
+          <div className="flex justify-center">
+            <ViewToggle />
           </div>
         </div>
       </div>
