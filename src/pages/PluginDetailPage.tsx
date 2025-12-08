@@ -150,36 +150,22 @@ export function PluginDetailPage() {
             </div>
 
             {/* Action buttons */}
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button
-                size="lg"
-                className="rounded-full"
-                onClick={() => window.open(plugin.mctools_downloadurl, '_blank')}
-              >
-                <Download size={18} className="mr-2" />
-                Download from NuGet
-              </Button>
-              {plugin.mctools_projecturl && (
+            {plugin.mctools_projecturl && (
+              <div className="mt-6">
                 <Button
-                  variant="outline"
                   size="lg"
                   className="rounded-full"
                   onClick={() => window.open(plugin.mctools_projecturl, '_blank')}
                 >
                   {isGitHubUrl(plugin.mctools_projecturl) ? (
-                    <>
-                      <Github size={18} className="mr-2" />
-                      View Source
-                    </>
+                    <Github size={18} className="mr-2" />
                   ) : (
-                    <>
-                      <Globe size={18} className="mr-2" />
-                      Project Website
-                    </>
+                    <Globe size={18} className="mr-2" />
                   )}
+                  View Tool Details
                 </Button>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
 

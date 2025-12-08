@@ -34,7 +34,7 @@ export function StoreLayout({
             <div className="flex items-center justify-center gap-2 mb-4">
               <Sparkles size={32} className="text-white" />
               <h1 className="text-4xl md:text-5xl font-bold">
-                XrmToolBox Plugin Store
+                XrmToolBox Plugin Catalog
               </h1>
             </div>
             <p className="text-lg md:text-xl text-white/90 mb-6 max-w-3xl mx-auto">

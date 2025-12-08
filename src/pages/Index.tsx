@@ -80,27 +80,27 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="gradient-hero text-white py-16 px-4">
+      <div className="gradient-hero text-white py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles size={32} className="text-white" />
-            <h1 className="text-4xl md:text-6xl font-bold">
+            <h1 className="text-4xl md:text-5xl font-bold">
               XrmToolBox Plugin Catalog
             </h1>
           </div>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-white/90 mb-6 max-w-3xl mx-auto">
             Discover powerful plugins for Microsoft Power Platform development and administration
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <div className="text-lg">
+            <div className="text-base">
               <span className="font-semibold">{plugins.length.toLocaleString()}</span> plugins available
             </div>
             <div className="hidden sm:block text-white/60">•</div>
-            <div className="text-lg">
+            <div className="text-base">
               <span className="font-semibold">{allCategories.length}</span> categories
             </div>
             <div className="hidden sm:block text-white/60">•</div>
-            <div className="text-lg">
+            <div className="text-base">
               Built for Power Platform
             </div>
           </div>
