@@ -138,7 +138,7 @@
       "mctools_xrmtoolboxversiondependency": "1.2020.12.43",
       "mctools_latestreleasenote": "This tool provides an advanced GUI to create, edid, assign and generate documentation for Dataverse security roles.\n\t\t\tv1.2025.4.1: First version.\n\t\t\t\n\t\t\tMain features:\n\t\t\t- Create new roles or edit existing security roles with an advanced UI\n\t\t\t- Create and use privilege templates (a set of predefined privileges to be assigned to tables)\n\t\t\t- Predefined privilege templates\n\t\t\t- Clone roles\n\t\t\t- Check if a given role is actually used\n\t\t\t- Assign role to a user/team\n\t\t\t- Contextual help\n\n\t\t\t* For older releases go here: https://github.com/neronotte/Greg.Xrm/releases",
       "mctools_latestversionid": "{88d7ed75-3c19-f011-998a-7c1e52214c74}",
-      "mctools_totalfeedbackallversion": 1,
+      "mctools_totalfeedbackallversion": 2,
       "mctools_licenseurl": "https://www.nuget.org/packages/Greg.Xrm.RoleEditor/1.2025.4.1/license",
       "mctools_requirelicenseacceptance": false,
       "contact-mctools_ismvp": true,
