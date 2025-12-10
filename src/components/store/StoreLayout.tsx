@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Sparkles, ExternalLink, Github } from "lucide-react";
+import { Sparkles, ExternalLink, Github, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Plugin } from "@/components/PluginCard";
@@ -53,9 +53,16 @@ export function StoreLayout({
                 Built for Power Platform
               </div>
             </div>
-            {/* View Toggle */}
-            <div className="flex justify-center">
+            {/* View Toggle and Getting Started */}
+            <div className="flex items-center justify-center gap-4">
               <ViewToggle />
+              <Link
+                to="/getting-started"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white hover:bg-white/30 transition-colors"
+              >
+                <HelpCircle size={14} />
+                <span className="hidden sm:inline">Getting Started</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -84,8 +91,17 @@ export function StoreLayout({
                 <StoreSearchBar plugins={plugins} className="w-full" />
               </div>
 
-              {/* View Toggle */}
-              <ViewToggle />
+              {/* View Toggle and Getting Started */}
+              <div className="flex items-center gap-2">
+                <Link
+                  to="/getting-started"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                >
+                  <HelpCircle size={14} />
+                  <span className="hidden sm:inline">Getting Started</span>
+                </Link>
+                <ViewToggle />
+              </div>
             </div>
           </div>
         </header>
