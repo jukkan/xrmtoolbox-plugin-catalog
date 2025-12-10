@@ -11,6 +11,7 @@ import { PluginDetailPage } from "./pages/PluginDetailPage";
 import { CategoryPage } from "./pages/CategoryPage";
 import { AuthorPage } from "./pages/AuthorPage";
 import { ChartsPage } from "./pages/ChartsPage";
+import { GettingStartedPage } from "./pages/GettingStartedPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,9 @@ const App = () => (
           <Route path="/store/category/:categoryId" element={<CategoryPage />} />
           <Route path="/store/author/:authorName" element={<AuthorPage />} />
           <Route path="/store/charts" element={<ChartsPage />} />
+
+          {/* Getting Started guide */}
+          <Route path="/getting-started" element={<GettingStartedPage />} />
 
           {/* Feed view (original) */}
           <Route path="/feed" element={<Index />} />
