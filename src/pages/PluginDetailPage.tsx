@@ -22,6 +22,7 @@ import { AuthorBadge } from "@/components/store/AuthorBadge";
 import { CategoryBadge } from "@/components/store/CategoryBadge";
 import { OpenSourceBadge } from "@/components/store/OpenSourceBadge";
 import { SEO } from "@/components/SEO";
+import { FormattedText } from "@/components/FormattedText";
 import {
   parseCategories,
   formatDownloadsFull,
@@ -224,9 +225,10 @@ export function PluginDetailPage() {
         {/* Description */}
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">Description</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            {plugin.mctools_description}
-          </p>
+          <FormattedText
+            text={plugin.mctools_description}
+            className="text-muted-foreground leading-relaxed"
+          />
         </section>
 
         <Separator className="my-8" />
@@ -322,9 +324,10 @@ export function PluginDetailPage() {
                 <div className="text-sm text-muted-foreground mb-2">
                   v{plugin.mctools_version} Release Notes
                 </div>
-                <p className="text-foreground whitespace-pre-line">
-                  {plugin.mctools_latestreleasenote}
-                </p>
+                <FormattedText
+                  text={plugin.mctools_latestreleasenote}
+                  className="text-foreground"
+                />
               </div>
             </section>
           </>
