@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ChevronDown, ChevronRight, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowLeft, ChevronDown, ChevronRight, ExternalLink, Sparkles, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -451,10 +451,10 @@ export function GettingStartedPage() {
       </header>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white py-12 px-4">
+      <div className="gradient-hero text-white py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Welcome to XrmToolBox
+            Introduction to XrmToolBox
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
             Your essential toolkit for Microsoft Power Platform and Dynamics 365 development
@@ -474,8 +474,46 @@ export function GettingStartedPage() {
         {renderSection()}
       </main>
 
+      {/* About this site Section */}
+      <div className="bg-slate-100 border-t border-border/50 py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+            About this site
+          </h2>
+          <div className="bg-white rounded-xl border border-border/50 p-6 space-y-4">
+            <p className="text-foreground leading-relaxed">
+              You are browsing a site hosted on GitHub Pages, built on top of a daily updated feed of plugin details from the official XrmToolBox.com website. It offers a modern experience for accessing information on the tools, yet it hosts no data of its own whatsoever.
+            </p>
+            <p className="text-foreground leading-relaxed">
+              The purpose of the Plugin Catalog site is to help the community of Power Platform and Dynamics 365 makers, admins and developers discover the amazing tools built by the community. The tool ecosystem has been made possible by the work of Tanguy Touzard, owner and creator of{" "}
+              <a
+                href="https://github.com/MscrmTools/XrmToolBox"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-medium"
+              >
+                XrmToolBox
+              </a>
+              .👏
+            </p>
+            <p className="text-foreground leading-relaxed">
+              For info about this Catalog site in particular (not the tools nor The Box), go to its{" "}
+              <a
+                href="https://github.com/jukkan/xrmtoolbox-plugin-catalog/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline font-medium"
+              >
+                GitHub repo
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Footer CTA */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 px-4">
+      <div className="gradient-hero text-white py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Ready to explore plugins?
@@ -493,21 +531,58 @@ export function GettingStartedPage() {
         </div>
       </div>
 
-      {/* Simple Footer */}
-      <footer className="bg-slate-100 border-t border-border/50 py-6 px-4">
-        <div className="max-w-4xl mx-auto text-center text-sm text-muted-foreground">
-          <p>XrmToolBox Plugin Catalog</p>
-          <p className="mt-1">
-            Data refreshed regularly from{" "}
-            <a
-              href="https://www.xrmtoolbox.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              XrmToolBox.com
-            </a>
-          </p>
+      {/* Footer */}
+      <footer className="border-t border-border/50 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Left side */}
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                  <Sparkles size={12} className="text-white" />
+                </div>
+                <span className="font-semibold text-sm">XrmToolBox Plugin Catalog</span>
+              </div>
+
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                <Button
+                  variant="link"
+                  size="sm"
+                  className="p-0 h-auto text-muted-foreground hover:text-foreground"
+                  onClick={() => window.open("https://www.xrmtoolbox.com/", "_blank")}
+                >
+                  XrmToolBox.com
+                  <ExternalLink size={12} className="ml-1" />
+                </Button>
+                <Button
+                  variant="link"
+                  size="sm"
+                  className="p-0 h-auto text-muted-foreground hover:text-foreground"
+                  onClick={() => window.open("https://github.com/jukkan/xrmtoolbox-plugin-catalog", "_blank")}
+                >
+                  <Github size={14} className="mr-1" />
+                  GitHub
+                </Button>
+              </div>
+            </div>
+
+            {/* Right side */}
+            <div className="text-sm text-muted-foreground text-center md:text-right">
+              <p>{pluginCount.toLocaleString()} plugins available</p>
+              <p className="text-xs mt-1">Data refreshed regularly from XrmToolBox.com</p>
+              <p className="text-xs mt-1">
+                Catalog site created by{" "}
+                <a
+                  href="https://jukkan.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Jukka Niiranen
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
