@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { StarRating } from "./StarRating";
 import { Plugin } from "./PluginCard";
+import { FormattedText } from "./FormattedText";
 import { Download, Github, Calendar, User, Package, ExternalLink, Globe } from "lucide-react";
 import { format } from "date-fns";
 
@@ -77,9 +78,10 @@ export const PluginDetails = ({ plugin, open, onClose }: PluginDetailsProps) => 
         </DialogHeader>
 
         <div className="space-y-6">
-          <p className="text-muted-foreground leading-relaxed">
-            {plugin.mctools_description}
-          </p>
+          <FormattedText
+            text={plugin.mctools_description}
+            className="text-muted-foreground leading-relaxed"
+          />
 
           {categories.length > 0 && (
             <div>
@@ -121,9 +123,10 @@ export const PluginDetails = ({ plugin, open, onClose }: PluginDetailsProps) => 
           <div>
             <h4 className="font-semibold mb-2">Latest Release Notes</h4>
             <div className="bg-muted/50 rounded-lg p-4">
-              <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                {plugin.mctools_latestreleasenote || 'No release notes available.'}
-              </p>
+              <FormattedText
+                text={plugin.mctools_latestreleasenote || 'No release notes available.'}
+                className="text-sm text-muted-foreground"
+              />
             </div>
           </div>
 
