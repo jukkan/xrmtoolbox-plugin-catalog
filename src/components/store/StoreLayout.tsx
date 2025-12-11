@@ -171,6 +171,17 @@ export function StoreLayout({
             <div className="text-sm text-muted-foreground text-center md:text-right">
               <p>{plugins.length.toLocaleString()} plugins available</p>
               <p className="text-xs mt-1">Data refreshed regularly from XrmToolBox.com</p>
+              <p className="text-xs mt-1">
+                Catalog site created by{" "}
+                <a
+                  href="https://jukkan.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Jukka Niiranen
+                </a>
+              </p>
             </div>
           </div>
         </div>

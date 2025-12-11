@@ -182,6 +182,17 @@ const Index = () => {
               <p className="text-sm text-muted-foreground">
                 Built with ❤️ for the Power Platform community
               </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Catalog site created by{" "}
+                <a
+                  href="https://jukkan.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Jukka Niiranen
+                </a>
+              </p>
             </div>
           </div>
         </div>
