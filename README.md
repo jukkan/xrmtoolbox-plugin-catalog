@@ -4,11 +4,13 @@ A modern, user-friendly web interface for browsing and discovering [XrmToolBox](
 
 **Live Site**: [xrm.jukkan.com](https://xrm.jukkan.com)
 
+<img width="1463" height="1182" alt="image" src="https://github.com/user-attachments/assets/ddea30de-ddff-4524-9288-84bea5200d2d" />
+
 ## What is this?
 
-This is an independent, modern UI layer built on top of the XrmToolBox plugin catalog. It provides a clean, searchable interface to explore the 200+ plugins available for XrmToolBox, making it easier to discover tools for your Microsoft Dynamics 365 / Dataverse development needs.
+This is an independent, modern UI layer built on top of the XrmToolBox plugin catalog. It provides a clean, searchable interface to explore the hundreds of plugins available for XrmToolBox, making it easier to discover tools for your Microsoft Dynamics 365 / Dataverse development needs. Built by [Jukka Niiiranen](https://jukkan.com/), using AI coding tools like Claude Code and Lovable.
 
-**Important**: XrmToolBox is a separate project maintained by the XrmToolBox community. This web catalog simply presents the plugin data from the official XrmToolBox OData feed in a modern, accessible format. For the official XrmToolBox application and documentation, please visit [www.xrmtoolbox.com](https://www.xrmtoolbox.com/).
+**Important**: XrmToolBox is a separate project maintained by the XrmToolBox community and the original creator, Tanguy Touzard. This web catalog simply presents the plugin data from the official XrmToolBox OData feed in a modern, accessible format. For the official XrmToolBox application repo, please visit [github.com/MscrmTools/XrmToolBox](https://github.com/MscrmTools/XrmToolBox)
 
 ## Features
 
@@ -69,8 +71,6 @@ npm run refresh-plugins
 
 The site is automatically deployed to [xrm.jukkan.com](https://xrm.jukkan.com) via GitHub Pages whenever changes are pushed to the main branch.
 
-For detailed deployment instructions (GitHub Pages, Ubuntu VPS with Nginx, etc.), see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
 ## Plugin Data
 
 Plugin information is sourced from the official XrmToolBox OData feed and updated automatically:
@@ -80,21 +80,11 @@ Plugin information is sourced from the official XrmToolBox OData feed and update
 
 For more details about the data refresh system, see [PLUGIN_REFRESH.md](./PLUGIN_REFRESH.md).
 
-## Feedback and Issues
+## Feedback, Issues, Contributing
 
-Found a bug? Have a suggestion? Want to see a new feature?
+Found a bug? Have a suggestion? Want to see a new feature? Want to build it?
 
 Please open an issue on GitHub: [github.com/jukkan/xrmtoolbox-plugin-catalog/issues](https://github.com/jukkan/xrmtoolbox-plugin-catalog/issues)
-
-Your feedback helps make this catalog better for the entire XrmToolBox community!
-
-## Contributing
-
-Contributions are welcome! Feel free to:
-
-- Report bugs or suggest features via GitHub Issues
-- Submit pull requests with improvements
-- Share the catalog with other Dynamics 365 / Dataverse developers
 
 ## License
 
