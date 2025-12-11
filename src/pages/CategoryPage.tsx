@@ -13,6 +13,7 @@ import { Plugin } from "@/components/PluginCard";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { CategoryChips } from "@/components/store/CategoryChips";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
+import { SEO } from "@/components/SEO";
 import { getCategoryColor, getPluginsByCategory, getAllCategories, sortPlugins } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
@@ -55,8 +56,38 @@ export function CategoryPage() {
     );
   }
 
+  const title = `${categoryName} Plugins`;
+  const description = `Browse ${categoryPlugins.length} ${categoryName} plugin${categoryPlugins.length !== 1 ? 's' : ''} for XrmToolBox. Power Platform and Dynamics 365 development tools.`;
+  const canonical = `/store/category/${encodeURIComponent(categoryName)}`;
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Store',
+        item: 'https://xrm.jukkan.com/store'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: `${categoryName} Plugins`,
+        item: `https://xrm.jukkan.com${canonical}`
+      }
+    ]
+  };
+
   return (
     <StoreLayout plugins={plugins} showHero={false}>
+      <SEO
+        title={title}
+        description={description}
+        keywords={`${categoryName}, XrmToolBox plugins, Power Platform, Dynamics 365, Dataverse`}
+        canonical={canonical}
+        structuredData={breadcrumbSchema}
+      />
       <div className="space-y-6">
         {/* Back button */}
         <Button

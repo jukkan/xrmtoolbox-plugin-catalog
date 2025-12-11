@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ChevronDown, ChevronRight, ExternalLink, Sparkles, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SEO } from "@/components/SEO";
 import {
   Accordion,
   AccordionContent,
@@ -423,6 +424,12 @@ export function GettingStartedPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <SEO
+        title="Getting Started with XrmToolBox"
+        description="Learn how to install and use XrmToolBox for Microsoft Power Platform and Dynamics 365 development. Step-by-step guide to getting started with plugins and connections."
+        keywords="XrmToolBox getting started, installation guide, Power Platform tutorial, Dynamics 365 tools, XrmToolBox plugins"
+        canonical="/getting-started"
+      />
       {/* Sticky Header */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-4xl mx-auto px-4 md:px-8">

@@ -21,6 +21,7 @@ import { RatingStars } from "@/components/store/RatingStars";
 import { AuthorBadge } from "@/components/store/AuthorBadge";
 import { CategoryBadge } from "@/components/store/CategoryBadge";
 import { OpenSourceBadge } from "@/components/store/OpenSourceBadge";
+import { SEO } from "@/components/SEO";
 import {
   parseCategories,
   formatDownloadsFull,
@@ -83,8 +84,57 @@ export function PluginDetailPage() {
 
   const isGitHubUrl = (url: string) => url?.toLowerCase().includes('github.com');
 
+  // SEO metadata
+  const title = plugin.mctools_name;
+  const description = plugin.mctools_description.length > 155
+    ? plugin.mctools_description.substring(0, 152) + '...'
+    : plugin.mctools_description;
+  const keywords = `${plugin.mctools_name}, ${plugin.mctools_authors}, XrmToolBox plugin, ${categories.join(', ')}, Power Platform, Dynamics 365`;
+  const ogImage = plugin.mctools_logourl || 'https://lovable.dev/opengraph-image-p98pqg.png';
+  const canonical = `/store/plugin/${encodeURIComponent(plugin.mctools_nugetid)}`;
+
+  // Structured data for plugin (using SoftwareApplication schema)
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: plugin.mctools_name,
+    description: plugin.mctools_description,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Windows',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    author: {
+      '@type': isMvp ? 'Person' : 'Organization',
+      name: plugin.mctools_authors,
+    },
+    aggregateRating: rating > 0 ? {
+      '@type': 'AggregateRating',
+      ratingValue: rating.toString(),
+      ratingCount: ratingCount,
+      bestRating: '5',
+      worstRating: '1',
+    } : undefined,
+    datePublished: plugin.mctools_firstreleasedate,
+    dateModified: plugin.mctools_latestreleasedate,
+    softwareVersion: plugin.mctools_version,
+    downloadUrl: plugin.mctools_projecturl,
+    ...(plugin.mctools_isopensource && { license: 'Open Source' }),
+  };
+
   return (
     <StoreLayout plugins={plugins} showHero={false}>
+      <SEO
+        title={title}
+        description={description}
+        keywords={keywords}
+        ogImage={ogImage}
+        ogType="website"
+        canonical={canonical}
+        structuredData={structuredData}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Back button */}
         <Button
