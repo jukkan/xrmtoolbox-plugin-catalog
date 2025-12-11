@@ -24,19 +24,18 @@
       // Single Page Apps for GitHub Pages
       // MIT License
       // https://github.com/rafgraph/spa-github-pages
-      // This script checks to see if a redirect is present and if it is, it converts
-      // the query string into the correct url and updates the browser location
-      // using window.history.replaceState(...), which won't cause the browser to
-      // attempt to load the new url. When the single page app is loaded further down
-      // in this file, the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
+      // This script takes the current url and converts the path and query
+      // string into just a query string, and then redirects the browser
+      // to the new url with only a query string and hash fragment,
+      // e.g., https://xrm.jukkan.com/store/plugin/MyPlugin
+      // becomes https://xrm.jukkan.com/?/store/plugin/MyPlugin
+      // This redirect will be caught by index.html and converted back to the proper path
       (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
+        if (l.pathname.length > 1) {
+          var path = l.pathname.substring(1) + l.search + l.hash;
+          l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, -1).join('/') + '/?/' + path
           );
         }
       }(window.location))
