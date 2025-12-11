@@ -1,13 +1,13 @@
 import { useState, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, TrendingUp, Download, Star, Clock } from "lucide-react";
+import { ArrowLeft, TrendingUp, Download, Star, Clock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Plugin } from "@/components/PluginCard";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
 import { SEO } from "@/components/SEO";
-import { getMostPopular, getTopRated, getRecentlyUpdated, sortPlugins } from "@/utils/pluginUtils";
+import { getMostPopular, getTopRated, getRecentlyUpdated, getRecentlyReleased, sortPlugins } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
 export function ChartsPage() {
@@ -23,6 +23,7 @@ export function ChartsPage() {
   const mostPopular = useMemo(() => getMostPopular(plugins).slice(0, 50), [plugins]);
   const topRated = useMemo(() => getTopRated(plugins, 3).slice(0, 50), [plugins]);
   const recentlyUpdated = useMemo(() => getRecentlyUpdated(plugins, 90).slice(0, 50), [plugins]);
+  const recentlyReleased = useMemo(() => getRecentlyReleased(plugins, 90).slice(0, 50), [plugins]);
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
@@ -49,13 +50,15 @@ export function ChartsPage() {
   const chartTitles: Record<string, string> = {
     downloads: 'Most Downloaded Plugins',
     rating: 'Top Rated Plugins',
-    updated: 'Recently Updated Plugins'
+    updated: 'Recently Updated Plugins',
+    released: 'New Plugins'
   };
 
   const chartDescriptions: Record<string, string> = {
     downloads: 'Discover the top 50 most downloaded XrmToolBox plugins for Microsoft Power Platform and Dynamics 365.',
     rating: 'Browse the highest-rated XrmToolBox plugins based on community feedback. Power Platform development tools.',
-    updated: 'Check out recently updated XrmToolBox plugins with the latest features and improvements.'
+    updated: 'Check out recently updated XrmToolBox plugins with the latest features and improvements.',
+    released: 'Explore newly released XrmToolBox plugins for Power Platform and Dynamics 365. Fresh tools from the community.'
   };
 
   const title = chartTitles[activeTab] || 'Top Charts';
@@ -94,7 +97,7 @@ export function ChartsPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={handleTabChange}>
-          <TabsList className="grid w-full grid-cols-3 max-w-md">
+          <TabsList className="grid w-full grid-cols-4 max-w-2xl">
             <TabsTrigger value="downloads" className="flex items-center gap-2">
               <Download size={14} />
               <span className="hidden sm:inline">Downloads</span>
@@ -106,6 +109,10 @@ export function ChartsPage() {
             <TabsTrigger value="updated" className="flex items-center gap-2">
               <Clock size={14} />
               <span className="hidden sm:inline">Updated</span>
+            </TabsTrigger>
+            <TabsTrigger value="released" className="flex items-center gap-2">
+              <Sparkles size={14} />
+              <span className="hidden sm:inline">New</span>
             </TabsTrigger>
           </TabsList>
 
@@ -158,6 +165,25 @@ export function ChartsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {recentlyUpdated.map((plugin, index) => (
+                <div key={plugin.mctools_pluginid} className="flex items-start gap-3">
+                  <div className="w-8 h-8 shrink-0 flex items-center justify-center rounded-full bg-muted font-bold text-sm">
+                    {index + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <StorePluginCard plugin={plugin} variant="compact" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="released" className="mt-6">
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold">New Plugins</h2>
+              <p className="text-sm text-muted-foreground">Plugins released in the last 90 days</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {recentlyReleased.map((plugin, index) => (
                 <div key={plugin.mctools_pluginid} className="flex items-start gap-3">
                   <div className="w-8 h-8 shrink-0 flex items-center justify-center rounded-full bg-muted font-bold text-sm">
                     {index + 1}

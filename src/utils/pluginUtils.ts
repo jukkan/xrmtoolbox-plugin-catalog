@@ -112,7 +112,7 @@ export function filterPlugins(plugins: Plugin[], filters: {
 }
 
 // Sort plugins
-export function sortPlugins(plugins: Plugin[], sortBy: 'downloads' | 'rating' | 'updated' | 'name'): Plugin[] {
+export function sortPlugins(plugins: Plugin[], sortBy: 'downloads' | 'rating' | 'updated' | 'released' | 'name'): Plugin[] {
   return [...plugins].sort((a, b) => {
     switch (sortBy) {
       case 'downloads':
@@ -121,6 +121,8 @@ export function sortPlugins(plugins: Plugin[], sortBy: 'downloads' | 'rating' | 
         return parseFloat(b.mctools_averagefeedbackratingallversions) - parseFloat(a.mctools_averagefeedbackratingallversions);
       case 'updated':
         return new Date(b.mctools_latestreleasedate).getTime() - new Date(a.mctools_latestreleasedate).getTime();
+      case 'released':
+        return new Date(b.mctools_firstreleasedate).getTime() - new Date(a.mctools_firstreleasedate).getTime();
       case 'name':
         return a.mctools_name.localeCompare(b.mctools_name);
       default:
@@ -142,6 +144,22 @@ export function getRecentlyUpdated(plugins: Plugin[], days: number = 30): Plugin
     }
   }).sort((a, b) =>
     new Date(b.mctools_latestreleasedate).getTime() - new Date(a.mctools_latestreleasedate).getTime()
+  );
+}
+
+// Get recently released plugins (within N days)
+export function getRecentlyReleased(plugins: Plugin[], days: number = 90): Plugin[] {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+
+  return plugins.filter(p => {
+    try {
+      return new Date(p.mctools_firstreleasedate) >= cutoff;
+    } catch {
+      return false;
+    }
+  }).sort((a, b) =>
+    new Date(b.mctools_firstreleasedate).getTime() - new Date(a.mctools_firstreleasedate).getTime()
   );
 }
 
