@@ -4,7 +4,8 @@ import { PluginDetails } from "@/components/PluginDetails";
 import { SearchAndFilters } from "@/components/SearchAndFilters";
 import { ViewToggle } from "@/components/store/ViewToggle";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Sparkles } from "lucide-react";
+import { ExternalLink, Sparkles, HelpCircle, Github } from "lucide-react";
+import { Link } from "react-router-dom";
 import pluginsData from "@/data/plugins.json";
 
 const Index = () => {
@@ -104,9 +105,16 @@ const Index = () => {
               Built for Power Platform
             </div>
           </div>
-          {/* View Toggle */}
-          <div className="flex justify-center">
+          {/* View Toggle and Getting Started */}
+          <div className="flex items-center justify-center gap-4">
             <ViewToggle />
+            <Link
+              to="/getting-started"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white hover:bg-white/30 transition-colors"
+            >
+              <HelpCircle size={14} />
+              <span className="hidden sm:inline">Getting Started</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -160,29 +168,45 @@ const Index = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-muted/30 border-t mt-16">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+      <footer className="border-t border-border/50 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-center md:text-left">
-              <p className="text-muted-foreground">
-                Data sourced from{" "}
+            {/* Left side */}
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                  <Sparkles size={12} className="text-white" />
+                </div>
+                <span className="font-semibold text-sm">XrmToolBox Plugin Catalog</span>
+              </div>
+
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <Button
                   variant="link"
-                  className="p-0 h-auto text-primary"
+                  size="sm"
+                  className="p-0 h-auto text-muted-foreground hover:text-foreground"
                   onClick={() => window.open("https://www.xrmtoolbox.com/", "_blank")}
                 >
-                  XrmToolBox.com <ExternalLink size={14} className="ml-1" />
+                  XrmToolBox.com
+                  <ExternalLink size={12} className="ml-1" />
                 </Button>
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Visit the official site for more details about XrmToolBox plugins
-              </p>
+                <Button
+                  variant="link"
+                  size="sm"
+                  className="p-0 h-auto text-muted-foreground hover:text-foreground"
+                  onClick={() => window.open("https://github.com/jukkan/xrmtoolbox-plugin-catalog", "_blank")}
+                >
+                  <Github size={14} className="mr-1" />
+                  GitHub
+                </Button>
+              </div>
             </div>
-            <div className="text-center md:text-right">
-              <p className="text-sm text-muted-foreground">
-                Built with ❤️ for the Power Platform community
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
+
+            {/* Right side */}
+            <div className="text-sm text-muted-foreground text-center md:text-right">
+              <p>{plugins.length.toLocaleString()} plugins available</p>
+              <p className="text-xs mt-1">Data refreshed regularly from XrmToolBox.com</p>
+              <p className="text-xs mt-1">
                 Catalog site created by{" "}
                 <a
                   href="https://jukkan.com/"
