@@ -41,8 +41,15 @@ export function AuthorPage() {
   const stats = useMemo(() => {
     const totalDownloads = authorPlugins.reduce((sum, p) => sum + p.mctools_totaldownloadcount, 0);
     const ratingsCount = authorPlugins.reduce((sum, p) => sum + ((p as any).mctools_totalfeedbackallversion || 0), 0);
-    const avgRating = authorPlugins.length > 0
-      ? authorPlugins.reduce((sum, p) => sum + (parseFloat(p.mctools_averagefeedbackratingallversions) || 0), 0) / authorPlugins.length
+
+    // Calculate average rating only from plugins that have ratings
+    const pluginsWithRatings = authorPlugins.filter(p => {
+      const rating = parseFloat(p.mctools_averagefeedbackratingallversions);
+      return !isNaN(rating) && rating > 0;
+    });
+
+    const avgRating = pluginsWithRatings.length > 0
+      ? pluginsWithRatings.reduce((sum, p) => sum + parseFloat(p.mctools_averagefeedbackratingallversions), 0) / pluginsWithRatings.length
       : 0;
 
     return { totalDownloads, ratingsCount, avgRating };
