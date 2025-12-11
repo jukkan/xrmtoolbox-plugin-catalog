@@ -35,7 +35,7 @@
           var path = l.pathname.substring(1) + l.search + l.hash;
           l.replace(
             l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, -1).join('/') + '/?/' + path
+            '/?/' + path
           );
         }
       }(window.location))
