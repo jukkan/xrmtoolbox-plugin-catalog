@@ -12,6 +12,7 @@ import {
 import { Plugin } from "@/components/PluginCard";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
+import { SEO } from "@/components/SEO";
 import { getPluginsByAuthor, sortPlugins, formatDownloads } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
@@ -72,8 +73,35 @@ export function AuthorPage() {
     );
   }
 
+  const title = `${author}${isMvp ? ' (MVP)' : ''} - Plugin Developer`;
+  const description = `Browse ${authorPlugins.length} XrmToolBox plugin${authorPlugins.length !== 1 ? 's' : ''} by ${author}. ${formatDownloads(stats.totalDownloads)} total downloads${stats.avgRating > 0 ? `, ${stats.avgRating.toFixed(1)} avg rating` : ''}. Power Platform development tools.`;
+  const canonical = `/store/author/${encodeURIComponent(author)}`;
+
+  const profileSchema = {
+    '@context': 'https://schema.org',
+    '@type': isMvp ? 'Person' : 'Organization',
+    name: author,
+    url: `https://xrm.jukkan.com${canonical}`,
+    ...(stats.avgRating > 0 && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: stats.avgRating.toFixed(1),
+        ratingCount: stats.ratingsCount,
+        bestRating: '5',
+        worstRating: '1'
+      }
+    })
+  };
+
   return (
     <StoreLayout plugins={plugins} showHero={false}>
+      <SEO
+        title={title}
+        description={description}
+        keywords={`${author}, XrmToolBox plugin developer, Power Platform, Dynamics 365, Dataverse${isMvp ? ', MVP' : ''}`}
+        canonical={canonical}
+        structuredData={profileSchema}
+      />
       <div className="space-y-6">
         {/* Back button */}
         <Button

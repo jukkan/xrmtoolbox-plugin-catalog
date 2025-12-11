@@ -6,6 +6,7 @@ import { HeroCarousel } from "@/components/store/HeroCarousel";
 import { PluginCarousel } from "@/components/store/PluginCarousel";
 import { CategoryChips } from "@/components/store/CategoryChips";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
+import { SEO } from "@/components/SEO";
 import {
   getAllCategories,
   getFeaturedPlugins,
@@ -62,8 +63,16 @@ export function StorePage() {
 
   // If searching, show search results
   if (searchQuery) {
+    const searchTitle = `Search: ${searchQuery}`;
+    const searchDescription = `Found ${searchResults.length} XrmToolBox plugin${searchResults.length !== 1 ? 's' : ''} matching "${searchQuery}". Browse tools for Microsoft Power Platform and Dynamics 365.`;
+
     return (
       <StoreLayout plugins={plugins} showHero={false}>
+        <SEO
+          title={searchTitle}
+          description={searchDescription}
+          canonical={`/store?search=${encodeURIComponent(searchQuery)}`}
+        />
         <div className="space-y-6">
           {/* Search results header */}
           <div>
@@ -100,11 +109,38 @@ export function StorePage() {
   }
 
   // Default store home view
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'XrmToolBox Plugin Catalog',
+    description: 'Discover and explore XrmToolBox plugins for Microsoft Power Platform development and administration',
+    url: 'https://xrm.jukkan.com',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://xrm.jukkan.com/store?search={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'XrmToolBox Community',
+      url: 'https://www.xrmtoolbox.com'
+    }
+  };
+
   return (
     <StoreLayout
       plugins={plugins}
       showHero={true}
     >
+      <SEO
+        title="XrmToolBox Plugin Catalog - Power Platform Tools"
+        description={`Discover and explore ${plugins.length}+ XrmToolBox plugins for Microsoft Power Platform development and administration. Browse tools for Dynamics 365 and Dataverse.`}
+        canonical="/store"
+        structuredData={organizationSchema}
+      />
       <div className="space-y-12">
         {/* Category Quick Access */}
         <section>

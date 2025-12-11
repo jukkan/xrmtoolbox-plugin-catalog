@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Plugin } from "@/components/PluginCard";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
+import { SEO } from "@/components/SEO";
 import { getMostPopular, getTopRated, getRecentlyUpdated, sortPlugins } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
@@ -45,8 +46,29 @@ export function ChartsPage() {
     </div>
   );
 
+  const chartTitles: Record<string, string> = {
+    downloads: 'Most Downloaded Plugins',
+    rating: 'Top Rated Plugins',
+    updated: 'Recently Updated Plugins'
+  };
+
+  const chartDescriptions: Record<string, string> = {
+    downloads: 'Discover the top 50 most downloaded XrmToolBox plugins for Microsoft Power Platform and Dynamics 365.',
+    rating: 'Browse the highest-rated XrmToolBox plugins based on community feedback. Power Platform development tools.',
+    updated: 'Check out recently updated XrmToolBox plugins with the latest features and improvements.'
+  };
+
+  const title = chartTitles[activeTab] || 'Top Charts';
+  const description = chartDescriptions[activeTab] || 'Discover the most popular and highest-rated XrmToolBox plugins for Power Platform.';
+
   return (
     <StoreLayout plugins={plugins} showHero={false}>
+      <SEO
+        title={title}
+        description={description}
+        keywords="XrmToolBox charts, most popular plugins, top rated, recently updated, Power Platform, Dynamics 365"
+        canonical={`/store/charts${activeTab !== 'downloads' ? `?sort=${activeTab}` : ''}`}
+      />
       <div className="space-y-6">
         {/* Back button */}
         <Button
