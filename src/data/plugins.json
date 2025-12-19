@@ -5140,7 +5140,7 @@
       "mctools_version": "1.2025.12.14",
       "mctools_description": "Find the solutions that contain the flows, update co-owners and solutions, filter by solution, hide/show managed solutions and export flows to CSV.",
       "mctools_authors": "Matt Collins-Jones",
-      "mctools_categorieslist": null,
+      "mctools_categorieslist": "Processes,Solutions,Configuration,Power Automate",
       "mctools_averagedownloadcount": "0.0000000000",
       "mctools_totaldownloadcount": 0,
       "mctools_averagefeedbackratingallversions": "0.0000000000",
