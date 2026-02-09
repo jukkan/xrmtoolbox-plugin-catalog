@@ -10,8 +10,9 @@
     "useCaseSummary",
     "editorialContext",
     "confidence",
-    "reviewStatus",
-    "sources"
+    "status",
+    "sources",
+    "aiClaims"
   ],
   "additionalProperties": false,
   "properties": {
@@ -43,21 +44,36 @@
       "minimum": 0,
       "maximum": 1
     },
-    "reviewStatus": {
+    "status": {
       "type": "string",
-      "enum": ["draft", "in_review", "approved", "published"]
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved",
+        "published"
+      ]
     },
     "sources": {
       "type": "array",
       "items": {
         "$ref": "#/$defs/source"
       }
+    },
+    "aiClaims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/aiClaim"
+      }
     }
   },
   "$defs": {
     "source": {
       "type": "object",
-      "required": ["title", "type", "accessedAt"],
+      "required": [
+        "title",
+        "type",
+        "accessedAt"
+      ],
       "additionalProperties": false,
       "properties": {
         "title": {
@@ -69,7 +85,14 @@
         },
         "type": {
           "type": "string",
-          "enum": ["plugin_catalog", "github", "docs", "blog", "community", "other"]
+          "enum": [
+            "plugin_catalog",
+            "github",
+            "docs",
+            "blog",
+            "community",
+            "other"
+          ]
         },
         "accessedAt": {
           "type": "string",
@@ -82,7 +105,13 @@
     },
     "highlight": {
       "type": "object",
-      "required": ["pluginId", "pluginName", "summary", "insight", "sources"],
+      "required": [
+        "pluginId",
+        "pluginName",
+        "summary",
+        "insight",
+        "sources"
+      ],
       "additionalProperties": false,
       "properties": {
         "pluginId": {
@@ -116,7 +145,11 @@
     },
     "authorResearchEntry": {
       "type": "object",
-      "required": ["authorName", "findings", "sources"],
+      "required": [
+        "authorName",
+        "findings",
+        "sources"
+      ],
       "additionalProperties": false,
       "properties": {
         "authorName": {
@@ -146,6 +179,55 @@
           }
         }
       }
+    },
+    "aiClaim": {
+      "type": "object",
+      "required": [
+        "field",
+        "claim",
+        "references"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "claim": {
+          "type": "string"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claimReference"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "claimReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "citation": {
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "required": [
+            "citation"
+          ]
+        }
+      ]
     }
   }
 }

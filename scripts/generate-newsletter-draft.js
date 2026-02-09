@@ -79,18 +79,43 @@ function buildDraft(snapshot) {
   const draft = {
     month,
     generatedAt: new Date().toISOString(),
-    reviewStatus: 'draft',
+    status: 'draft',
     sourceSnapshot: `src/data/monthly/${month}.json`,
     highlights,
     topNewPlugins: topNew,
     topUpdatedPlugins: topUpdated,
     editorialNotes: [
       'AI-enriched draft generated automatically from monthly snapshot rankings.',
-      'Replace rationale text with editor-approved commentary before moving to in_review.',
+      'Replace rationale text with editor-approved commentary before moving to reviewed.',
     ],
   };
 
+  draft.aiClaims = buildAiClaims(draft);
   return draft;
+}
+
+
+function buildAiClaims(draft) {
+  const refs = [
+    {
+      citation: `Source snapshot: ${draft.sourceSnapshot}`,
+    },
+  ];
+
+  const claims = [];
+  draft.topNewPlugins.forEach((plugin, index) => {
+    claims.push({ field: `topNewPlugins[${index}].rationale`, claim: plugin.rationale, references: refs });
+  });
+
+  draft.topUpdatedPlugins.forEach((plugin, index) => {
+    claims.push({ field: `topUpdatedPlugins[${index}].rationale`, claim: plugin.rationale, references: refs });
+  });
+
+  draft.editorialNotes.forEach((note, index) => {
+    claims.push({ field: `editorialNotes[${index}]`, claim: note, references: refs });
+  });
+
+  return claims;
 }
 
 function toMarkdown(draft) {
@@ -98,7 +123,7 @@ function toMarkdown(draft) {
   lines.push(`# XrmToolBox Monthly Digest: ${draft.month}`);
   lines.push('');
   lines.push(`- Generated at: ${draft.generatedAt}`);
-  lines.push(`- Review status: ${draft.reviewStatus}`);
+  lines.push(`- Status: ${draft.status}`);
   lines.push('');
   lines.push('## Highlights');
   for (const highlight of draft.highlights) {
