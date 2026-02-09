@@ -1,0 +1,5 @@
+# Newsletter and deployment automation must be reviewed by the repository owner.
+.github/workflows/newsletter-draft.yml @jukkan
+.github/workflows/deploy-pages.yml @jukkan
+src/data/newsletter/drafts/** @jukkan
+src/data/newsletter/published/** @jukkan

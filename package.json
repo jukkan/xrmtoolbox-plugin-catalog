@@ -12,7 +12,9 @@
     "refresh-plugins": "node scripts/refresh-plugins.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "generate-monthly-snapshot": "node scripts/generate-monthly-snapshot.js",
-    "generate-monthly-snapshot:ci": "node scripts/generate-monthly-snapshot.js --ci"
+    "generate-monthly-snapshot:ci": "node scripts/generate-monthly-snapshot.js --ci",
+    "generate-newsletter-draft": "node scripts/generate-newsletter-draft.js",
+    "publish-newsletter-page": "node scripts/publish-newsletter-page.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
