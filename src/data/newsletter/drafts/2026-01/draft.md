@@ -1,5 +1,7 @@
 # XrmToolBox Monthly Digest Draft (2026-01)
 
+- Status: draft
+
 ## Editorial Intro
 Welcome to the 2026-01 XrmToolBox digest. This month we tracked 1 new plugins and 16 updated plugins. Top picks include User Role Matrix and Plugin Trace Viewer, selected with deterministic ranking heuristics for repeatable output.
 

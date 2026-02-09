@@ -46,9 +46,12 @@ function parseArgs(argv) {
 }
 
 function readDraft(month) {
-  const draftPath = path.join(DRAFT_DIR, `${month}.json`);
+  const nestedPath = path.join(DRAFT_DIR, month, 'draft.json');
+  const flatPath = path.join(DRAFT_DIR, `${month}.json`);
+  const draftPath = fs.existsSync(nestedPath) ? nestedPath : flatPath;
+
   if (!fs.existsSync(draftPath)) {
-    throw new Error(`Draft file not found: ${draftPath}`);
+    throw new Error(`Draft file not found. Checked: ${nestedPath} and ${flatPath}`);
   }
 
   const raw = fs.readFileSync(draftPath, 'utf8');
@@ -103,8 +106,8 @@ function run() {
   const options = parseArgs(process.argv.slice(2));
   const draft = readDraft(options.month);
 
-  if (options.requireApproved && draft.reviewStatus !== 'approved') {
-    throw new Error(`Draft reviewStatus must be "approved" to publish. Current: "${draft.reviewStatus ?? 'undefined'}"`);
+  if (options.requireApproved && draft.status !== 'approved') {
+    throw new Error(`Draft status must be "approved" to publish. Current: "${draft.status ?? 'undefined'}"`);
   }
 
   if (!fs.existsSync(PUBLISHED_DIR)) {

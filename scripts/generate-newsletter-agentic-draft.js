@@ -227,9 +227,35 @@ function buildEditorial(month, snapshot, summaries) {
   return { intro, outro };
 }
 
+
+function buildAiClaims(summaries, editorial, sourceSnapshot) {
+  const refs = [{
+    citation: `Source snapshot: ${sourceSnapshot}`,
+  }];
+
+  const claims = [];
+
+  summaries.new.forEach((item, index) => {
+    claims.push({ field: `summaries.new[${index}].summary`, claim: item.summary, references: refs });
+    claims.push({ field: `summaries.new[${index}].useCase`, claim: item.useCase, references: refs });
+  });
+
+  summaries.updated.forEach((item, index) => {
+    claims.push({ field: `summaries.updated[${index}].summary`, claim: item.summary, references: refs });
+    claims.push({ field: `summaries.updated[${index}].useCase`, claim: item.useCase, references: refs });
+  });
+
+  claims.push({ field: 'editorial.intro', claim: editorial.intro, references: refs });
+  claims.push({ field: 'editorial.outro', claim: editorial.outro, references: refs });
+
+  return claims;
+}
+
 function toMarkdown(draft) {
   const lines = [];
   lines.push(`# XrmToolBox Monthly Digest Draft (${draft.month})`);
+  lines.push('');
+  lines.push(`- Status: ${draft.status}`);
   lines.push('');
   lines.push('## Editorial Intro');
   lines.push(draft.editorial.intro);
@@ -294,6 +320,7 @@ function run() {
 
   const draft = {
     month: options.month,
+    status: 'draft',
     generatedAt: snapshot.generatedAt,
     sourceSnapshot: path.relative(REPO_ROOT, snapshotPath).replaceAll(path.sep, '/'),
     process: {
@@ -309,6 +336,7 @@ function run() {
     candidates,
     summaries,
     editorial,
+    aiClaims: buildAiClaims(summaries, editorial, path.relative(REPO_ROOT, snapshotPath).replaceAll(path.sep, '/')),
   };
 
   const output = writeDraft(options.month, draft);
