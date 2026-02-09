@@ -1,0 +1,51 @@
+{
+  "month": "YYYY-MM",
+  "highlights": [
+    {
+      "pluginId": "sample-plugin-id",
+      "pluginName": "Sample Plugin",
+      "author": "Sample Author",
+      "version": "1.0.0",
+      "category": "Productivity",
+      "summary": "Raw snapshot facts about the plugin release and activity.",
+      "insight": "AI-authored summary of why this plugin matters for this month.",
+      "sources": [
+        {
+          "title": "Plugin listing",
+          "url": "https://www.xrmtoolbox.com/plugins/sample-plugin-id/",
+          "type": "plugin_catalog",
+          "accessedAt": "2026-02-01T00:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "authorResearch": [
+    {
+      "authorName": "Sample Author",
+      "profileUrl": "https://www.xrmtoolbox.com/plugins/author/sample-author/",
+      "pluginCount": 3,
+      "notablePlugins": ["Sample Plugin"],
+      "findings": "Raw author research notes synthesized from source links.",
+      "sources": [
+        {
+          "title": "Author profile",
+          "url": "https://www.xrmtoolbox.com/plugins/author/sample-author/",
+          "type": "plugin_catalog",
+          "accessedAt": "2026-02-01T00:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "useCaseSummary": "Summary of practical use cases discovered in this month's source data.",
+  "editorialContext": "Editor notes capturing trend framing and publication tone.",
+  "confidence": 0.85,
+  "reviewStatus": "draft",
+  "sources": [
+    {
+      "title": "Monthly snapshot",
+      "type": "plugin_catalog",
+      "accessedAt": "2026-02-01T00:00:00.000Z",
+      "notes": "Root source set for all generated insights in this draft."
+    }
+  ]
+}
