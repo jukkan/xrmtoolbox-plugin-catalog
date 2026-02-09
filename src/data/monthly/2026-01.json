@@ -1,0 +1,216 @@
+{
+  "month": "2026-01",
+  "generatedAt": "2026-02-09T11:18:17.160Z",
+  "counts": {
+    "newPlugins": 1,
+    "updatedPlugins": 16
+  },
+  "newPlugins": [
+    {
+      "mctools_pluginid": "0cd5a796-47fc-f011-83da-7c1e52780049",
+      "name": "User Role Matrix",
+      "author": "Giovanni Manunta",
+      "ranking": {
+        "totalDownloads": 143,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 14,
+        "releaseDate": "2026-01-25T16:39:35"
+      }
+    }
+  ],
+  "updatedPlugins": [
+    {
+      "mctools_pluginid": "8f7e488c-8c77-e711-9401-00155d522633",
+      "name": "Plugin Registration",
+      "author": "Microsoft, Alexey, Jonas, Imran and the Power Platform community",
+      "ranking": {
+        "totalDownloads": 623310,
+        "averageRating": 4.81,
+        "ratingDelta": null,
+        "recencyDays": 21,
+        "releaseDate": "2026-01-18T21:06:03"
+      }
+    },
+    {
+      "mctools_pluginid": "bb1cdb06-d945-e711-9400-00155d522475",
+      "name": "Plugin Trace Viewer",
+      "author": "Jonas Rapp",
+      "ranking": {
+        "totalDownloads": 608827,
+        "averageRating": 5,
+        "ratingDelta": null,
+        "recencyDays": 38,
+        "releaseDate": "2026-01-01T16:42:38"
+      }
+    },
+    {
+      "mctools_pluginid": "35f61432-a256-e711-8102-e0071b662051",
+      "name": "Solution Components Mover",
+      "author": "MscrmTools",
+      "ranking": {
+        "totalDownloads": 195718,
+        "averageRating": 4.7,
+        "ratingDelta": null,
+        "recencyDays": 10,
+        "releaseDate": "2026-01-29T17:14:02"
+      }
+    },
+    {
+      "mctools_pluginid": "261d6d0e-ce52-eb11-8fed-281878878818",
+      "name": "_n.SolutionManager",
+      "author": "_neronotte",
+      "ranking": {
+        "totalDownloads": 58073,
+        "averageRating": 4.5,
+        "ratingDelta": null,
+        "recencyDays": 27,
+        "releaseDate": "2026-01-12T20:09:47"
+      }
+    },
+    {
+      "mctools_pluginid": "b37954fa-cd52-eb11-8fed-281878878818",
+      "name": "_n.EnvironmentComparer",
+      "author": "_neronotte",
+      "ranking": {
+        "totalDownloads": 57141,
+        "averageRating": 4.5,
+        "ratingDelta": null,
+        "recencyDays": 36,
+        "releaseDate": "2026-01-03T15:43:50"
+      }
+    },
+    {
+      "mctools_pluginid": "65f51801-3866-eb11-8fed-281878872d8f",
+      "name": "_n.EnvironmentSolutionsComparer",
+      "author": "_neronotte",
+      "ranking": {
+        "totalDownloads": 46501,
+        "averageRating": 5,
+        "ratingDelta": null,
+        "recencyDays": 36,
+        "releaseDate": "2026-01-03T15:44:09"
+      }
+    },
+    {
+      "mctools_pluginid": "c4258ec4-72f6-ed11-a81c-000d3adcfd2c",
+      "name": "Schiavone.XrmToolBox.CloneUserSetup",
+      "author": "Don Schiavone",
+      "ranking": {
+        "totalDownloads": 11880,
+        "averageRating": 5,
+        "ratingDelta": null,
+        "recencyDays": 34,
+        "releaseDate": "2026-01-05T22:42:44"
+      }
+    },
+    {
+      "mctools_pluginid": "4af862dc-0175-ee11-a81c-000d3ab915c8",
+      "name": "_n.ModernThemeBuilder",
+      "author": "_neronotte",
+      "ranking": {
+        "totalDownloads": 8049,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 36,
+        "releaseDate": "2026-01-03T15:43:53"
+      }
+    },
+    {
+      "mctools_pluginid": "5687a506-4e9f-ef11-a81b-7c1e5234213e",
+      "name": "_n.RoleEditor",
+      "author": "_neronotte",
+      "ranking": {
+        "totalDownloads": 7840,
+        "averageRating": 5,
+        "ratingDelta": null,
+        "recencyDays": 36,
+        "releaseDate": "2026-01-03T15:44:02"
+      }
+    },
+    {
+      "mctools_pluginid": "0914d05e-aacb-f011-ad8e-7ced8d774601",
+      "name": "PowerShell Scripting Workspace",
+      "author": "Rob Wood and project contributors",
+      "ranking": {
+        "totalDownloads": 6949,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 17,
+        "releaseDate": "2026-01-22T19:07:48"
+      }
+    },
+    {
+      "mctools_pluginid": "2d62bcb6-7084-f011-aa44-7c1e5275cea8",
+      "name": "Configuration Migration Tool",
+      "author": "François Desjardins-Nadeau",
+      "ranking": {
+        "totalDownloads": 2310,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 14,
+        "releaseDate": "2026-01-25T12:50:04"
+      }
+    },
+    {
+      "mctools_pluginid": "5572ab25-2bd2-f011-ad8e-7ced8d488ef4",
+      "name": "NameBuilder",
+      "author": "Scott Sewell",
+      "ranking": {
+        "totalDownloads": 928,
+        "averageRating": 5,
+        "ratingDelta": null,
+        "recencyDays": 37,
+        "releaseDate": "2026-01-03T02:50:53"
+      }
+    },
+    {
+      "mctools_pluginid": "5b676faf-ddd9-f011-92b8-000d3adcb29e",
+      "name": "Desktop Flow Dependency Fixer",
+      "author": "Oluwafemi Tosin Ajigbayi",
+      "ranking": {
+        "totalDownloads": 813,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 25,
+        "releaseDate": "2026-01-14T16:29:00"
+      }
+    },
+    {
+      "mctools_pluginid": "73119620-cfe0-f011-92b8-6045bddce70d",
+      "name": "Business Unit Roles Explorer",
+      "author": "Ivan Ficko",
+      "ranking": {
+        "totalDownloads": 713,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 17,
+        "releaseDate": "2026-01-23T10:49:31"
+      }
+    },
+    {
+      "mctools_pluginid": "cbd004d0-c0da-f011-92b8-7ced8d4041b3",
+      "name": "Flow Finder",
+      "author": "Matt Collins-Jones",
+      "ranking": {
+        "totalDownloads": 709,
+        "averageRating": 0,
+        "ratingDelta": null,
+        "recencyDays": 25,
+        "releaseDate": "2026-01-14T23:19:12"
+      }
+    },
+    {
+      "mctools_pluginid": "b77ce881-9fe6-f011-92b8-7ced8d485cc3",
+      "name": "CascadeFields Configurator",
+      "author": "Scott Sewell",
+      "ranking": {
+        "totalDownloads": 36,
+        "averageRating": 5,
+        "ratingDelta": null,
+        "recencyDays": 38,
+        "releaseDate": "2026-01-01T21:59:13"
+      }
+    }
+  ]
+}
