@@ -87,17 +87,22 @@ function toSnapshotPlugin(plugin, releaseDateField) {
   const totalDownloads = Number(plugin.mctools_totaldownloadcount ?? 0);
   const averageRating = Number.parseFloat(plugin.mctools_averagefeedbackratingallversions ?? '0');
   const releaseDate = plugin[releaseDateField] ?? null;
+  const firstReleaseDate = plugin.mctools_firstreleasedate ?? null;
 
   return {
     mctools_pluginid: plugin.mctools_pluginid,
     name: plugin.mctools_name,
     author: plugin.mctools_authors,
+    categories: typeof plugin.mctools_categorieslist === 'string'
+      ? plugin.mctools_categorieslist.split(';').map((c) => c.trim()).filter(Boolean)
+      : [],
     ranking: {
       totalDownloads: Number.isFinite(totalDownloads) ? totalDownloads : 0,
       averageRating: Number.isFinite(averageRating) ? averageRating : null,
       ratingDelta: null,
       recencyDays: daysSince(releaseDate),
       releaseDate,
+      firstReleaseDate,
     },
   };
 }

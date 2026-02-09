@@ -31,6 +31,7 @@
         "pluginId": "0cd5a796-47fc-f011-83da-7c1e52780049",
         "name": "User Role Matrix",
         "author": "Giovanni Manunta",
+        "categories": [],
         "ranking": {
           "totalDownloads": 143,
           "averageRating": 0,
@@ -38,58 +39,22 @@
           "recencyDays": 14,
           "releaseDate": "2026-01-25T16:39:35"
         },
-        "score": 11.7667,
+        "score": 14.5667,
         "scoreBreakdown": {
           "downloadsComponent": 4.3167,
           "ratingComponent": 0,
-          "recencyComponent": 6.2,
-          "newBonusComponent": 1.25
+          "recencyComponent": 9,
+          "newBonusComponent": 1.25,
+          "firstReleaseBonusComponent": 0
         }
       }
     ],
     "updated": [
       {
-        "pluginId": "35f61432-a256-e711-8102-e0071b662051",
-        "name": "Solution Components Mover",
-        "author": "MscrmTools",
-        "ranking": {
-          "totalDownloads": 195718,
-          "averageRating": 4.7,
-          "ratingDelta": null,
-          "recencyDays": 10,
-          "releaseDate": "2026-01-29T17:14:02"
-        },
-        "score": 24.6333,
-        "scoreBreakdown": {
-          "downloadsComponent": 10.5833,
-          "ratingComponent": 7.05,
-          "recencyComponent": 7,
-          "newBonusComponent": 0
-        }
-      },
-      {
-        "pluginId": "8f7e488c-8c77-e711-9401-00155d522633",
-        "name": "Plugin Registration",
-        "author": "Microsoft, Alexey, Jonas, Imran and the Power Platform community",
-        "ranking": {
-          "totalDownloads": 623310,
-          "averageRating": 4.81,
-          "ratingDelta": null,
-          "recencyDays": 21,
-          "releaseDate": "2026-01-18T21:06:03"
-        },
-        "score": 23.6044,
-        "scoreBreakdown": {
-          "downloadsComponent": 11.5894,
-          "ratingComponent": 7.215,
-          "recencyComponent": 4.8,
-          "newBonusComponent": 0
-        }
-      },
-      {
         "pluginId": "bb1cdb06-d945-e711-9400-00155d522475",
         "name": "Plugin Trace Viewer",
         "author": "Jonas Rapp",
+        "categories": [],
         "ranking": {
           "totalDownloads": 608827,
           "averageRating": 5,
@@ -97,50 +62,36 @@
           "recencyDays": 38,
           "releaseDate": "2026-01-01T16:42:38"
         },
-        "score": 20.469,
+        "score": 28.444,
         "scoreBreakdown": {
           "downloadsComponent": 11.569,
           "ratingComponent": 7.5,
-          "recencyComponent": 1.4,
-          "newBonusComponent": 0
+          "recencyComponent": 9,
+          "newBonusComponent": 0,
+          "firstReleaseBonusComponent": 0,
+          "categoryDiversityComponent": 0.375
         }
       },
       {
-        "pluginId": "261d6d0e-ce52-eb11-8fed-281878878818",
-        "name": "_n.SolutionManager",
-        "author": "_neronotte",
+        "pluginId": "8f7e488c-8c77-e711-9401-00155d522633",
+        "name": "Plugin Registration",
+        "author": "Microsoft, Alexey, Jonas, Imran and the Power Platform community",
+        "categories": [],
         "ranking": {
-          "totalDownloads": 58073,
-          "averageRating": 4.5,
+          "totalDownloads": 623310,
+          "averageRating": 4.81,
           "ratingDelta": null,
-          "recencyDays": 27,
-          "releaseDate": "2026-01-12T20:09:47"
+          "recencyDays": 21,
+          "releaseDate": "2026-01-18T21:06:03"
         },
-        "score": 19.878,
+        "score": 27.8044,
         "scoreBreakdown": {
-          "downloadsComponent": 9.528,
-          "ratingComponent": 6.75,
-          "recencyComponent": 3.6,
-          "newBonusComponent": 0
-        }
-      },
-      {
-        "pluginId": "65f51801-3866-eb11-8fed-281878872d8f",
-        "name": "_n.EnvironmentSolutionsComparer",
-        "author": "_neronotte",
-        "ranking": {
-          "totalDownloads": 46501,
-          "averageRating": 5,
-          "ratingDelta": null,
-          "recencyDays": 36,
-          "releaseDate": "2026-01-03T15:44:09"
-        },
-        "score": 18.6349,
-        "scoreBreakdown": {
-          "downloadsComponent": 9.3349,
-          "ratingComponent": 7.5,
-          "recencyComponent": 1.8,
-          "newBonusComponent": 0
+          "downloadsComponent": 11.5894,
+          "ratingComponent": 7.215,
+          "recencyComponent": 9,
+          "newBonusComponent": 0,
+          "firstReleaseBonusComponent": 0,
+          "categoryDiversityComponent": 0
         }
       }
     ]
@@ -151,56 +102,32 @@
         "pluginId": "0cd5a796-47fc-f011-83da-7c1e52780049",
         "name": "User Role Matrix",
         "author": "Giovanni Manunta",
-        "score": 11.7667,
+        "score": 14.5667,
         "summary": "User Role Matrix by Giovanni Manunta is a new highlight with 143 downloads and a unrated community rating.",
         "useCase": "Use User Role Matrix when your team needs a proven option that was active within the last 14 days."
       }
     ],
     "updated": [
       {
-        "pluginId": "35f61432-a256-e711-8102-e0071b662051",
-        "name": "Solution Components Mover",
-        "author": "MscrmTools",
-        "score": 24.6333,
-        "summary": "Solution Components Mover by MscrmTools is a notable update highlight with 195,718 downloads and a 4.7/5 community rating.",
-        "useCase": "Use Solution Components Mover when your team needs a proven option that was active within the last 10 days."
+        "pluginId": "bb1cdb06-d945-e711-9400-00155d522475",
+        "name": "Plugin Trace Viewer",
+        "author": "Jonas Rapp",
+        "score": 28.444,
+        "summary": "Plugin Trace Viewer by Jonas Rapp is a notable update highlight with 608,827 downloads and a 5.0/5 community rating.",
+        "useCase": "Use Plugin Trace Viewer when your team needs a proven option that was active within the last 38 days."
       },
       {
         "pluginId": "8f7e488c-8c77-e711-9401-00155d522633",
         "name": "Plugin Registration",
         "author": "Microsoft, Alexey, Jonas, Imran and the Power Platform community",
-        "score": 23.6044,
+        "score": 27.8044,
         "summary": "Plugin Registration by Microsoft, Alexey, Jonas, Imran and the Power Platform community is a notable update highlight with 623,310 downloads and a 4.8/5 community rating.",
         "useCase": "Use Plugin Registration when your team needs a proven option that was active within the last 21 days."
-      },
-      {
-        "pluginId": "bb1cdb06-d945-e711-9400-00155d522475",
-        "name": "Plugin Trace Viewer",
-        "author": "Jonas Rapp",
-        "score": 20.469,
-        "summary": "Plugin Trace Viewer by Jonas Rapp is a notable update highlight with 608,827 downloads and a 5.0/5 community rating.",
-        "useCase": "Use Plugin Trace Viewer when your team needs a proven option that was active within the last 38 days."
-      },
-      {
-        "pluginId": "261d6d0e-ce52-eb11-8fed-281878878818",
-        "name": "_n.SolutionManager",
-        "author": "_neronotte",
-        "score": 19.878,
-        "summary": "_n.SolutionManager by _neronotte is a notable update highlight with 58,073 downloads and a 4.5/5 community rating.",
-        "useCase": "Use _n.SolutionManager when your team needs a proven option that was active within the last 27 days."
-      },
-      {
-        "pluginId": "65f51801-3866-eb11-8fed-281878872d8f",
-        "name": "_n.EnvironmentSolutionsComparer",
-        "author": "_neronotte",
-        "score": 18.6349,
-        "summary": "_n.EnvironmentSolutionsComparer by _neronotte is a notable update highlight with 46,501 downloads and a 5.0/5 community rating.",
-        "useCase": "Use _n.EnvironmentSolutionsComparer when your team needs a proven option that was active within the last 36 days."
       }
     ]
   },
   "editorial": {
-    "intro": "Welcome to the 2026-01 XrmToolBox digest. This month we tracked 1 new plugins and 16 updated plugins. Top picks include User Role Matrix and Solution Components Mover, selected with deterministic ranking heuristics for repeatable output.",
+    "intro": "Welcome to the 2026-01 XrmToolBox digest. This month we tracked 1 new plugins and 16 updated plugins. Top picks include User Role Matrix and Plugin Trace Viewer, selected with deterministic ranking heuristics for repeatable output.",
     "outro": "Before publication, validate each highlighted item against release notes and add editor commentary where needed."
   }
 }
