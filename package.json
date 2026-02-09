@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "refresh-plugins": "node scripts/refresh-plugins.js",
-    "generate-sitemap": "node scripts/generate-sitemap.js"
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-monthly-snapshot": "node scripts/generate-monthly-snapshot.js",
+    "generate-monthly-snapshot:ci": "node scripts/generate-monthly-snapshot.js --ci"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
