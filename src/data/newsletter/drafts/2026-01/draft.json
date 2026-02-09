@@ -1,0 +1,206 @@
+{
+  "month": "2026-01",
+  "generatedAt": "2026-02-09T11:18:17.160Z",
+  "sourceSnapshot": "src/data/monthly/2026-01.json",
+  "process": {
+    "type": "agentic-proof-of-concept",
+    "prompts": [
+      {
+        "file": ".github/newsletter/prompts/01-select-candidates.md",
+        "content": "# Step 1: Select top candidates (deterministic)\n\nObjective:\n- Identify the top new plugins and top updated plugins for the newsletter.\n\nRules:\n- Use only fields in the monthly snapshot.\n- Compute a deterministic score per plugin using version-controlled ranking heuristics.\n- Sort descending by score.\n- Resolve ties by `name`, then `mctools_pluginid`.\n- Keep only the configured top N entries for each bucket.\n\nOutput contract:\n- `candidates.new[]`\n- `candidates.updated[]`\n- each item includes score breakdown for auditability."
+      },
+      {
+        "file": ".github/newsletter/prompts/02-summarize-use-cases.md",
+        "content": "# Step 2: Produce short summaries and use-cases (deterministic)\n\nObjective:\n- Create concise, consistent blurbs for selected plugins.\n\nRules:\n- No external calls.\n- Build summary text from plugin name, author, rating, downloads, and recency.\n- Keep copy neutral and factual.\n- Use one sentence for \"summary\" and one sentence for \"useCase\".\n\nOutput contract:\n- `summaries.new[]`\n- `summaries.updated[]`\n- each item includes `pluginId`, `name`, `author`, `summary`, `useCase`."
+      },
+      {
+        "file": ".github/newsletter/prompts/03-editorial-intro-outro.md",
+        "content": "# Step 3: Draft editorial intro/outro (deterministic)\n\nObjective:\n- Produce a stable intro and outro for the monthly digest.\n\nRules:\n- Mention month, new plugin count, updated plugin count.\n- Reference notable selections from this run.\n- Keep intro to 2-3 sentences.\n- Keep outro to 1-2 sentences with a review reminder.\n\nOutput contract:\n- `editorial.intro`\n- `editorial.outro`"
+      }
+    ],
+    "heuristicsPath": ".github/newsletter/ranking-heuristics.json",
+    "steps": [
+      "select top candidates (new + notable updates)",
+      "produce short summaries/use-cases",
+      "draft editorial intro/outro"
+    ]
+  },
+  "candidates": {
+    "new": [
+      {
+        "pluginId": "0cd5a796-47fc-f011-83da-7c1e52780049",
+        "name": "User Role Matrix",
+        "author": "Giovanni Manunta",
+        "ranking": {
+          "totalDownloads": 143,
+          "averageRating": 0,
+          "ratingDelta": null,
+          "recencyDays": 14,
+          "releaseDate": "2026-01-25T16:39:35"
+        },
+        "score": 11.7667,
+        "scoreBreakdown": {
+          "downloadsComponent": 4.3167,
+          "ratingComponent": 0,
+          "recencyComponent": 6.2,
+          "newBonusComponent": 1.25
+        }
+      }
+    ],
+    "updated": [
+      {
+        "pluginId": "35f61432-a256-e711-8102-e0071b662051",
+        "name": "Solution Components Mover",
+        "author": "MscrmTools",
+        "ranking": {
+          "totalDownloads": 195718,
+          "averageRating": 4.7,
+          "ratingDelta": null,
+          "recencyDays": 10,
+          "releaseDate": "2026-01-29T17:14:02"
+        },
+        "score": 24.6333,
+        "scoreBreakdown": {
+          "downloadsComponent": 10.5833,
+          "ratingComponent": 7.05,
+          "recencyComponent": 7,
+          "newBonusComponent": 0
+        }
+      },
+      {
+        "pluginId": "8f7e488c-8c77-e711-9401-00155d522633",
+        "name": "Plugin Registration",
+        "author": "Microsoft, Alexey, Jonas, Imran and the Power Platform community",
+        "ranking": {
+          "totalDownloads": 623310,
+          "averageRating": 4.81,
+          "ratingDelta": null,
+          "recencyDays": 21,
+          "releaseDate": "2026-01-18T21:06:03"
+        },
+        "score": 23.6044,
+        "scoreBreakdown": {
+          "downloadsComponent": 11.5894,
+          "ratingComponent": 7.215,
+          "recencyComponent": 4.8,
+          "newBonusComponent": 0
+        }
+      },
+      {
+        "pluginId": "bb1cdb06-d945-e711-9400-00155d522475",
+        "name": "Plugin Trace Viewer",
+        "author": "Jonas Rapp",
+        "ranking": {
+          "totalDownloads": 608827,
+          "averageRating": 5,
+          "ratingDelta": null,
+          "recencyDays": 38,
+          "releaseDate": "2026-01-01T16:42:38"
+        },
+        "score": 20.469,
+        "scoreBreakdown": {
+          "downloadsComponent": 11.569,
+          "ratingComponent": 7.5,
+          "recencyComponent": 1.4,
+          "newBonusComponent": 0
+        }
+      },
+      {
+        "pluginId": "261d6d0e-ce52-eb11-8fed-281878878818",
+        "name": "_n.SolutionManager",
+        "author": "_neronotte",
+        "ranking": {
+          "totalDownloads": 58073,
+          "averageRating": 4.5,
+          "ratingDelta": null,
+          "recencyDays": 27,
+          "releaseDate": "2026-01-12T20:09:47"
+        },
+        "score": 19.878,
+        "scoreBreakdown": {
+          "downloadsComponent": 9.528,
+          "ratingComponent": 6.75,
+          "recencyComponent": 3.6,
+          "newBonusComponent": 0
+        }
+      },
+      {
+        "pluginId": "65f51801-3866-eb11-8fed-281878872d8f",
+        "name": "_n.EnvironmentSolutionsComparer",
+        "author": "_neronotte",
+        "ranking": {
+          "totalDownloads": 46501,
+          "averageRating": 5,
+          "ratingDelta": null,
+          "recencyDays": 36,
+          "releaseDate": "2026-01-03T15:44:09"
+        },
+        "score": 18.6349,
+        "scoreBreakdown": {
+          "downloadsComponent": 9.3349,
+          "ratingComponent": 7.5,
+          "recencyComponent": 1.8,
+          "newBonusComponent": 0
+        }
+      }
+    ]
+  },
+  "summaries": {
+    "new": [
+      {
+        "pluginId": "0cd5a796-47fc-f011-83da-7c1e52780049",
+        "name": "User Role Matrix",
+        "author": "Giovanni Manunta",
+        "score": 11.7667,
+        "summary": "User Role Matrix by Giovanni Manunta is a new highlight with 143 downloads and a unrated community rating.",
+        "useCase": "Use User Role Matrix when your team needs a proven option that was active within the last 14 days."
+      }
+    ],
+    "updated": [
+      {
+        "pluginId": "35f61432-a256-e711-8102-e0071b662051",
+        "name": "Solution Components Mover",
+        "author": "MscrmTools",
+        "score": 24.6333,
+        "summary": "Solution Components Mover by MscrmTools is a notable update highlight with 195,718 downloads and a 4.7/5 community rating.",
+        "useCase": "Use Solution Components Mover when your team needs a proven option that was active within the last 10 days."
+      },
+      {
+        "pluginId": "8f7e488c-8c77-e711-9401-00155d522633",
+        "name": "Plugin Registration",
+        "author": "Microsoft, Alexey, Jonas, Imran and the Power Platform community",
+        "score": 23.6044,
+        "summary": "Plugin Registration by Microsoft, Alexey, Jonas, Imran and the Power Platform community is a notable update highlight with 623,310 downloads and a 4.8/5 community rating.",
+        "useCase": "Use Plugin Registration when your team needs a proven option that was active within the last 21 days."
+      },
+      {
+        "pluginId": "bb1cdb06-d945-e711-9400-00155d522475",
+        "name": "Plugin Trace Viewer",
+        "author": "Jonas Rapp",
+        "score": 20.469,
+        "summary": "Plugin Trace Viewer by Jonas Rapp is a notable update highlight with 608,827 downloads and a 5.0/5 community rating.",
+        "useCase": "Use Plugin Trace Viewer when your team needs a proven option that was active within the last 38 days."
+      },
+      {
+        "pluginId": "261d6d0e-ce52-eb11-8fed-281878878818",
+        "name": "_n.SolutionManager",
+        "author": "_neronotte",
+        "score": 19.878,
+        "summary": "_n.SolutionManager by _neronotte is a notable update highlight with 58,073 downloads and a 4.5/5 community rating.",
+        "useCase": "Use _n.SolutionManager when your team needs a proven option that was active within the last 27 days."
+      },
+      {
+        "pluginId": "65f51801-3866-eb11-8fed-281878872d8f",
+        "name": "_n.EnvironmentSolutionsComparer",
+        "author": "_neronotte",
+        "score": 18.6349,
+        "summary": "_n.EnvironmentSolutionsComparer by _neronotte is a notable update highlight with 46,501 downloads and a 5.0/5 community rating.",
+        "useCase": "Use _n.EnvironmentSolutionsComparer when your team needs a proven option that was active within the last 36 days."
+      }
+    ]
+  },
+  "editorial": {
+    "intro": "Welcome to the 2026-01 XrmToolBox digest. This month we tracked 1 new plugins and 16 updated plugins. Top picks include User Role Matrix and Solution Components Mover, selected with deterministic ranking heuristics for repeatable output.",
+    "outro": "Before publication, validate each highlighted item against release notes and add editor commentary where needed."
+  }
+}
