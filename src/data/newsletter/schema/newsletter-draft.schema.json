@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xrmtoolbox.example/newsletter-draft.schema.json",
+  "title": "Newsletter Insight Draft",
+  "type": "object",
+  "required": [
+    "month",
+    "highlights",
+    "authorResearch",
+    "useCaseSummary",
+    "editorialContext",
+    "confidence",
+    "reviewStatus",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "month": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$",
+      "description": "Newsletter period in YYYY-MM format"
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/highlight"
+      }
+    },
+    "authorResearch": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/authorResearchEntry"
+      }
+    },
+    "useCaseSummary": {
+      "type": "string"
+    },
+    "editorialContext": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "reviewStatus": {
+      "type": "string",
+      "enum": ["draft", "in_review", "approved", "published"]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["title", "type", "accessedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["plugin_catalog", "github", "docs", "blog", "community", "other"]
+        },
+        "accessedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "highlight": {
+      "type": "object",
+      "required": ["pluginId", "pluginName", "summary", "insight", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "pluginId": {
+          "type": "string"
+        },
+        "pluginName": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "insight": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        }
+      }
+    },
+    "authorResearchEntry": {
+      "type": "object",
+      "required": ["authorName", "findings", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "authorName": {
+          "type": "string"
+        },
+        "profileUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "pluginCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "notablePlugins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "findings": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        }
+      }
+    }
+  }
+}
