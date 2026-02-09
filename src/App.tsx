@@ -13,6 +13,8 @@ import { CategoryPage } from "./pages/CategoryPage";
 import { AuthorPage } from "./pages/AuthorPage";
 import { ChartsPage } from "./pages/ChartsPage";
 import { GettingStartedPage } from "./pages/GettingStartedPage";
+import { NewsletterArchivePage } from "./pages/NewsletterArchivePage";
+import { NewsletterPage } from "./pages/NewsletterPage";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,11 @@ const App = () => (
 
             {/* Getting Started guide */}
             <Route path="/getting-started" element={<GettingStartedPage />} />
+
+
+            {/* Newsletter archive and month pages */}
+            <Route path="/newsletter" element={<NewsletterArchivePage />} />
+            <Route path="/newsletter/:month" element={<NewsletterPage />} />
 
             {/* Feed view (original) */}
             <Route path="/feed" element={<Index />} />
