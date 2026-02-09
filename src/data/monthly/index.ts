@@ -4,12 +4,14 @@ export interface NewsletterRanking {
   ratingDelta: number | null;
   recencyDays: number;
   releaseDate: string;
+  firstReleaseDate?: string | null;
 }
 
 export interface NewsletterPluginEntry {
   mctools_pluginid: string;
   name: string;
   author: string;
+  categories?: string[];
   ranking: NewsletterRanking;
 }
 

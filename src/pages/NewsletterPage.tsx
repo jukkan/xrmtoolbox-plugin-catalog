@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { Button } from "@/components/ui/button";
 import { getMonthlyNewsletter, NewsletterPluginEntry } from "@/data/monthly";
+import { rankMostNotableUpdatedTools } from "@/utils/newsletterScoring";
 import pluginsData from "@/data/plugins.json";
 import { Plugin } from "@/components/PluginCard";
 
@@ -61,6 +62,12 @@ export function NewsletterPage() {
 
   const monthLabel = formatMonth(newsletter.month);
 
+  const notableUpdatedTools = rankMostNotableUpdatedTools(newsletter.updatedPlugins, newsletter.month, {
+    topLimit: 8,
+    maxPerAuthor: 1,
+    maxPerCategory: 2,
+  });
+
   return (
     <StoreLayout plugins={plugins} showHero={false}>
       <SEO
@@ -100,13 +107,22 @@ export function NewsletterPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Updated plugins</h2>
-          {newsletter.updatedPlugins.length === 0 ? (
-            <p className="text-muted-foreground">No updated plugins in this month.</p>
+          <h2 className="text-xl font-semibold">Most notable updated tools</h2>
+          {notableUpdatedTools.length === 0 ? (
+            <p className="text-muted-foreground">No notable updated tools matched this month's scoring thresholds.</p>
           ) : (
             <ul className="space-y-2">
-              {newsletter.updatedPlugins.map((plugin) => (
-                <PluginRow key={plugin.mctools_pluginid} plugin={plugin} />
+              {notableUpdatedTools.map((entry) => (
+                <li key={entry.plugin.mctools_pluginid} className="rounded-md border p-3">
+                  <div className="font-medium">{entry.plugin.name}</div>
+                  <div className="text-sm text-muted-foreground">{entry.plugin.author}</div>
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    Score: {entry.score.toFixed(1)} · Downloads: {entry.plugin.ranking.totalDownloads.toLocaleString()} · Rating: {entry.plugin.ranking.averageRating || "N/A"}
+                  </div>
+                  <Button asChild variant="link" size="sm" className="px-0 mt-1 h-auto">
+                    <Link to={`/store?search=${encodeURIComponent(entry.plugin.name)}`}>Search in catalog</Link>
+                  </Button>
+                </li>
               ))}
             </ul>
           )}

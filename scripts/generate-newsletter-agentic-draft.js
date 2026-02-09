@@ -70,18 +70,40 @@ function loadPrompts() {
 function toNumber(value, fallback = 0) {
   return typeof value === 'number' && Number.isFinite(value) ? value : fallback;
 }
+function toMonthKey(value) {
+  if (!value) {
+    return null;
+  }
 
-function scorePlugin(plugin, heuristics, isNew) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  return date.toISOString().slice(0, 7);
+}
+
+function getPrimaryCategory(plugin) {
+  return Array.isArray(plugin.categories) && plugin.categories.length > 0
+    ? plugin.categories[0]
+    : 'Uncategorized';
+}
+
+
+function scorePlugin(plugin, heuristics, context) {
   const ranking = plugin.ranking ?? {};
   const downloads = toNumber(ranking.totalDownloads, 0);
   const averageRating = toNumber(ranking.averageRating, 0);
   const recencyDays = toNumber(ranking.recencyDays, heuristics.recencyWindowDays);
+  const updatedThisMonth = toMonthKey(ranking.releaseDate) === context.month;
+  const firstReleaseThisMonth = toMonthKey(ranking.firstReleaseDate) === context.month;
 
   const downloadsComponent = Math.log10(downloads + 1) * heuristics.weights.downloadsLog10;
   const ratingComponent = averageRating * heuristics.weights.averageRating;
-  const recencyComponent = Math.max(0, heuristics.recencyWindowDays - recencyDays) * heuristics.weights.recencyBoost;
-  const newBonusComponent = isNew ? heuristics.weights.newPluginBonus : 0;
-  const score = downloadsComponent + ratingComponent + recencyComponent + newBonusComponent;
+  const recencyComponent = updatedThisMonth ? heuristics.weights.recencyBoost * heuristics.recencyWindowDays : Math.max(0, heuristics.recencyWindowDays - recencyDays) * heuristics.weights.recencyBoost;
+  const newBonusComponent = context.isNew ? heuristics.weights.newPluginBonus : 0;
+  const firstReleaseBonusComponent = !context.isNew && firstReleaseThisMonth ? heuristics.weights.newPluginBonus * 0.5 : 0;
+  const score = downloadsComponent + ratingComponent + recencyComponent + newBonusComponent + firstReleaseBonusComponent;
 
   return {
     score: Number(score.toFixed(4)),
@@ -90,6 +112,7 @@ function scorePlugin(plugin, heuristics, isNew) {
       ratingComponent: Number(ratingComponent.toFixed(4)),
       recencyComponent: Number(recencyComponent.toFixed(4)),
       newBonusComponent: Number(newBonusComponent.toFixed(4)),
+      firstReleaseBonusComponent: Number(firstReleaseBonusComponent.toFixed(4)),
     },
   };
 }
@@ -109,23 +132,64 @@ function sortCandidates(candidates) {
 }
 
 function selectCandidates(snapshot, heuristics) {
+  const maxPerAuthor = 1;
+  const maxPerCategory = 2;
+  const ratingThreshold = 4;
+
   const withScore = (plugins, isNew) =>
-    plugins.map((plugin) => {
-      const scoring = scorePlugin(plugin, heuristics, isNew);
-      return {
-        pluginId: plugin.mctools_pluginid,
-        name: plugin.name,
-        author: plugin.author,
-        ranking: plugin.ranking ?? {},
-        score: scoring.score,
-        scoreBreakdown: scoring.breakdown,
-      };
-    });
+    plugins
+      .filter((plugin) => isNew || toNumber(plugin.ranking?.averageRating, 0) >= ratingThreshold)
+      .map((plugin) => {
+        const scoring = scorePlugin(plugin, heuristics, { isNew, month: snapshot.month });
+        return {
+          pluginId: plugin.mctools_pluginid,
+          name: plugin.name,
+          author: plugin.author,
+          categories: plugin.categories ?? [],
+          ranking: plugin.ranking ?? {},
+          score: scoring.score,
+          scoreBreakdown: scoring.breakdown,
+        };
+      });
 
   const newCandidates = sortCandidates(withScore(snapshot.newPlugins ?? [], true)).slice(0, heuristics.selection.maxNew);
-  const updatedCandidates = sortCandidates(withScore(snapshot.updatedPlugins ?? [], false)).slice(0, heuristics.selection.maxUpdated);
 
-  return { new: newCandidates, updated: updatedCandidates };
+  const updatedRanked = sortCandidates(withScore(snapshot.updatedPlugins ?? [], false));
+  const updatedCandidates = [];
+  const authorCounts = new Map();
+  const categoryCounts = new Map();
+
+  for (const candidate of updatedRanked) {
+    if (updatedCandidates.length >= heuristics.selection.maxUpdated) {
+      break;
+    }
+
+    const author = candidate.author || 'Unknown';
+    const category = getPrimaryCategory(candidate);
+
+    const authorCount = authorCounts.get(author) ?? 0;
+    const categoryCount = categoryCounts.get(category) ?? 0;
+
+    if (authorCount >= maxPerAuthor || categoryCount >= maxPerCategory) {
+      continue;
+    }
+
+    const categoryDiversityComponent = categoryCount === 0 ? heuristics.weights.averageRating * 0.25 : 0;
+
+    updatedCandidates.push({
+      ...candidate,
+      score: Number((candidate.score + categoryDiversityComponent).toFixed(4)),
+      scoreBreakdown: {
+        ...candidate.scoreBreakdown,
+        categoryDiversityComponent: Number(categoryDiversityComponent.toFixed(4)),
+      },
+    });
+
+    authorCounts.set(author, authorCount + 1);
+    categoryCounts.set(category, categoryCount + 1);
+  }
+
+  return { new: newCandidates, updated: sortCandidates(updatedCandidates) };
 }
 
 function ratingText(value) {
