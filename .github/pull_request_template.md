@@ -2,7 +2,10 @@
 - [ ] Describe newsletter changes
 
 ## Newsletter draft status checklist
-- Status: `draft` / `reviewed` / `approved` / `published`
-- [ ] Draft status is set correctly in the changed newsletter draft JSON
+- Current status in draft JSON: `draft` / `reviewed` / `approved` / `published`
+- [ ] `draft`
+- [ ] `reviewed`
+- [ ] `approved`
+- [ ] `published` (only after publish workflow)
 - [ ] Required sections are present
 - [ ] Every AI-generated factual claim includes source links/references

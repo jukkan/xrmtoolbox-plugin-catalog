@@ -27,6 +27,9 @@ jobs:
       - name: Generate agentic newsletter draft
         run: node scripts/generate-newsletter-agentic-draft.js --month=${{ inputs.month }}
 
+      - name: Validate generated draft structure and sources
+        run: node scripts/validate-newsletter-draft.js --month=${{ inputs.month }}
+
       - name: Show generated files
         run: |
           echo "Generated files:"

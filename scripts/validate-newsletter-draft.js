@@ -64,33 +64,112 @@ function hasNonEmptyText(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-function validateRequiredSections(draft, errors) {
-  if (Array.isArray(draft.highlights)) {
-    const required = ['highlights', 'topNewPlugins', 'topUpdatedPlugins', 'editorialNotes'];
-    for (const section of required) {
-      if (!Array.isArray(draft[section]) || draft[section].length === 0) {
-        errors.push(`Missing required section content: ${section}`);
-      }
+function getValueAtPath(root, fieldPath) {
+  if (!hasNonEmptyText(fieldPath)) {
+    return undefined;
+  }
+
+  const segments = fieldPath
+    .replace(/\[(\d+)\]/g, '.$1')
+    .split('.')
+    .filter(Boolean);
+
+  let cursor = root;
+  for (const segment of segments) {
+    if (cursor === null || cursor === undefined || !(segment in cursor)) {
+      return undefined;
     }
+    cursor = cursor[segment];
+  }
+
+  return cursor;
+}
+
+function inferRequiredSections(draft) {
+  if (Array.isArray(draft.highlights) && Array.isArray(draft.authorResearch)) {
+    return [
+      { path: 'highlights', type: 'non-empty-array' },
+      { path: 'authorResearch', type: 'non-empty-array' },
+      { path: 'useCaseSummary', type: 'text' },
+      { path: 'editorialContext', type: 'text' },
+    ];
+  }
+
+  if (draft.summaries || draft.editorial) {
+    return [
+      { path: 'summaries.new', type: 'non-empty-array' },
+      { path: 'summaries.updated', type: 'non-empty-array' },
+      { path: 'editorial.intro', type: 'text' },
+      { path: 'editorial.outro', type: 'text' },
+    ];
+  }
+
+  return [];
+}
+
+function inferExpectedAiClaimFields(draft) {
+  const fields = [];
+
+  if (Array.isArray(draft.highlights)) {
+    draft.highlights.forEach((_, index) => fields.push(`highlights[${index}].insight`));
+  }
+
+  if (Array.isArray(draft.authorResearch)) {
+    draft.authorResearch.forEach((_, index) => fields.push(`authorResearch[${index}].findings`));
+  }
+
+  if (hasNonEmptyText(draft.useCaseSummary)) {
+    fields.push('useCaseSummary');
+  }
+
+  if (hasNonEmptyText(draft.editorialContext)) {
+    fields.push('editorialContext');
+  }
+
+  if (Array.isArray(draft.summaries?.new)) {
+    draft.summaries.new.forEach((_, index) => {
+      fields.push(`summaries.new[${index}].summary`);
+      fields.push(`summaries.new[${index}].useCase`);
+    });
+  }
+
+  if (Array.isArray(draft.summaries?.updated)) {
+    draft.summaries.updated.forEach((_, index) => {
+      fields.push(`summaries.updated[${index}].summary`);
+      fields.push(`summaries.updated[${index}].useCase`);
+    });
+  }
+
+  if (hasNonEmptyText(draft.editorial?.intro)) {
+    fields.push('editorial.intro');
+  }
+
+  if (hasNonEmptyText(draft.editorial?.outro)) {
+    fields.push('editorial.outro');
+  }
+
+  return fields;
+}
+
+function validateRequiredSections(draft, errors) {
+  const requiredSections = inferRequiredSections(draft);
+  if (requiredSections.length === 0) {
+    errors.push('Unable to infer required sections for this draft format.');
     return;
   }
 
-  const required = ['summaries.new', 'summaries.updated', 'editorial.intro', 'editorial.outro'];
-  if (!Array.isArray(draft.summaries?.new) || draft.summaries.new.length === 0) {
-    errors.push('Missing required section content: summaries.new');
-  }
-  if (!Array.isArray(draft.summaries?.updated) || draft.summaries.updated.length === 0) {
-    errors.push('Missing required section content: summaries.updated');
-  }
-  if (!hasNonEmptyText(draft.editorial?.intro)) {
-    errors.push('Missing required section content: editorial.intro');
-  }
-  if (!hasNonEmptyText(draft.editorial?.outro)) {
-    errors.push('Missing required section content: editorial.outro');
-  }
+  for (const section of requiredSections) {
+    const value = getValueAtPath(draft, section.path);
+    if (section.type === 'non-empty-array') {
+      if (!Array.isArray(value) || value.length === 0) {
+        errors.push(`Missing required section content: ${section.path}`);
+      }
+      continue;
+    }
 
-  if (required.length === 0) {
-    errors.push('No required sections were defined for validation.');
+    if (section.type === 'text' && !hasNonEmptyText(value)) {
+      errors.push(`Missing required section content: ${section.path}`);
+    }
   }
 }
 
@@ -100,13 +179,24 @@ function validateAiClaimReferences(draft, errors) {
     return;
   }
 
+  const claimFields = new Set();
+
   draft.aiClaims.forEach((claim, index) => {
     if (!hasNonEmptyText(claim.field)) {
       errors.push(`aiClaims[${index}].field is required.`);
+      return;
     }
+
+    claimFields.add(claim.field);
+
     if (!hasNonEmptyText(claim.claim)) {
       errors.push(`aiClaims[${index}].claim is required.`);
     }
+
+    if (getValueAtPath(draft, claim.field) === undefined) {
+      errors.push(`aiClaims[${index}].field does not resolve to a draft field: ${claim.field}`);
+    }
+
     if (!Array.isArray(claim.references) || claim.references.length === 0) {
       errors.push(`aiClaims[${index}].references must include at least one source.`);
       return;
@@ -120,6 +210,13 @@ function validateAiClaimReferences(draft, errors) {
       }
     });
   });
+
+  const expectedFields = inferExpectedAiClaimFields(draft);
+  for (const field of expectedFields) {
+    if (!claimFields.has(field)) {
+      errors.push(`Missing aiClaims coverage for AI-generated field: ${field}`);
+    }
+  }
 }
 
 function run() {
