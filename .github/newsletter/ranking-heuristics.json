@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "selection": {
+    "maxNew": 5,
+    "maxUpdated": 5
+  },
+  "weights": {
+    "downloadsLog10": 2,
+    "averageRating": 1.5,
+    "recencyBoost": 0.2,
+    "newPluginBonus": 1.25
+  },
+  "recencyWindowDays": 45,
+  "tieBreakers": [
+    "name",
+    "mctools_pluginid"
+  ]
+}

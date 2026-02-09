@@ -14,7 +14,8 @@
     "generate-monthly-snapshot": "node scripts/generate-monthly-snapshot.js",
     "generate-monthly-snapshot:ci": "node scripts/generate-monthly-snapshot.js --ci",
     "generate-newsletter-draft": "node scripts/generate-newsletter-draft.js",
-    "publish-newsletter-page": "node scripts/publish-newsletter-page.js"
+    "publish-newsletter-page": "node scripts/publish-newsletter-page.js",
+    "generate-newsletter-agentic-draft": "node scripts/generate-newsletter-agentic-draft.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

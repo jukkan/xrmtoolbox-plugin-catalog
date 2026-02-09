@@ -1,0 +1,41 @@
+name: Newsletter Agentic Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      month:
+        description: "Month to draft (YYYY-MM)"
+        required: true
+        type: string
+
+jobs:
+  build-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate agentic newsletter draft
+        run: node scripts/generate-newsletter-agentic-draft.js --month=${{ inputs.month }}
+
+      - name: Show generated files
+        run: |
+          echo "Generated files:"
+          ls -la src/data/newsletter/drafts/${{ inputs.month }}/
+
+      - name: Upload draft artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-draft-${{ inputs.month }}
+          path: |
+            src/data/newsletter/drafts/${{ inputs.month }}/draft.json
+            src/data/newsletter/drafts/${{ inputs.month }}/draft.md
