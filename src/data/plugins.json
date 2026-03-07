@@ -5332,7 +5332,7 @@
       "mctools_totalfeedbackallversion": 0,
       "mctools_licenseurl": "https://licenses.nuget.org/MIT",
       "mctools_requirelicenseacceptance": false,
-      "contact-mctools_ismvp": null,
+      "contact-mctools_ismvp": true,
       "list-id": "d74c12eb-4571-e711-8132-e0071b6502a1",
       "view-id": "d3f89d61-de72-e711-810c-5065f38b03b1",
       "entity-permissions-enabled": "true"
