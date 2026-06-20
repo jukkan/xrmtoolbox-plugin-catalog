@@ -8983,7 +8983,7 @@
       "mctools_xrmtoolboxversiondependency": "1.2018.1.20",
       "mctools_latestreleasenote": "1.2019.4.29 Added Condition Value search, Fixed BR Update Search, Some UI changes.\n1.2019.4.28 Official Release. Added Entity Status change search, fixed child process search bug, removed step search case sensitivity.\n0.2019.4.27 Fixed Entity Search bug #1, Added Search by Assignment, improved search algorithum now 5x faster.\n0.2019.4.25806 - Added reference to missing resource\n0.2019.3.28 - Added Missing References\n0.2019.3.27 - Initial Beta release",
       "mctools_latestversionid": "{25228118-b368-e911-a9a6-000d3ab44741}",
-      "mctools_totalfeedbackallversion": 5,
+      "mctools_totalfeedbackallversion": 6,
       "mctools_licenseurl": null,
       "mctools_requirelicenseacceptance": false,
       "contact-mctools_ismvp": null,
