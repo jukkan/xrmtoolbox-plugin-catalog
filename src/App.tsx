@@ -15,6 +15,7 @@ import { ChartsPage } from "./pages/ChartsPage";
 import { GettingStartedPage } from "./pages/GettingStartedPage";
 import { NewsletterArchivePage } from "./pages/NewsletterArchivePage";
 import { NewsletterPage } from "./pages/NewsletterPage";
+import { StateOfXrmPage } from "./pages/StateOfXrmPage";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,9 @@ const App = () => (
             {/* Newsletter archive and month pages */}
             <Route path="/newsletter" element={<NewsletterArchivePage />} />
             <Route path="/newsletter/:month" element={<NewsletterPage />} />
+
+            {/* State of XRM ecosystem stats */}
+            <Route path="/state" element={<StateOfXrmPage />} />
 
             {/* Feed view (original) */}
             <Route path="/feed" element={<Index />} />
