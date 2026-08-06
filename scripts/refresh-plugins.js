@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Script to refresh plugins.json from the XrmToolBox OData feed
- * Source: https://www.xrmtoolbox.com/_odata/plugins
+ * Script to refresh plugins.json from the XrmToolBox Web API
+ * Source: https://www.xrmtoolbox.com/_api/mctools_plugins
  *
  * This script fetches the latest plugin data and updates src/data/plugins.json
  *
  * Features:
- * - Handles OData pagination automatically (fetches all pages)
+ * - Handles Web API pagination automatically (fetches all pages via @odata.nextLink)
  * - Validates response structure
  * - Provides detailed progress reporting
  * - Displays statistics about fetched plugins
@@ -21,7 +21,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ODATA_URL = 'https://www.xrmtoolbox.com/_odata/plugins';
+const WEBAPI_URL = 'https://www.xrmtoolbox.com/_api/mctools_plugins';
 const OUTPUT_PATH = path.join(__dirname, '..', 'src', 'data', 'plugins.json');
 
 /**
@@ -63,13 +63,12 @@ function fetchData(url) {
 }
 
 /**
- * Fetch all pages from OData endpoint with pagination support
+ * Fetch all pages from Web API endpoint with pagination support
  */
 async function fetchAllPages(startUrl) {
   let allPlugins = [];
   let currentUrl = startUrl;
   let pageNumber = 1;
-  let metadata = null;
 
   while (currentUrl) {
     console.log(`   Fetching page ${pageNumber}...`);
@@ -77,21 +76,15 @@ async function fetchAllPages(startUrl) {
 
     // Validate the response structure
     if (!data || !data.value || !Array.isArray(data.value)) {
-      throw new Error('Invalid response structure: expected OData format with value array');
-    }
-
-    // Store metadata from first page
-    if (pageNumber === 1 && data['odata.metadata']) {
-      metadata = data['odata.metadata'];
+      throw new Error('Invalid response structure: expected Web API format with value array');
     }
 
     // Add plugins from this page
     allPlugins = allPlugins.concat(data.value);
     console.log(`   ✓ Page ${pageNumber}: ${data.value.length} plugins (total so far: ${allPlugins.length})`);
 
-    // Check for next page link (OData pagination)
-    // Different OData versions use different property names
-    currentUrl = data['odata.nextLink'] || data['@odata.nextLink'] || null;
+    // Check for next page link (Web API pagination uses @odata.nextLink)
+    currentUrl = data['@odata.nextLink'] || null;
     pageNumber++;
 
     // Safety check to prevent infinite loops
@@ -100,9 +93,8 @@ async function fetchAllPages(startUrl) {
     }
   }
 
-  // Return complete dataset with metadata and page count
+  // Return complete dataset with page count
   return {
-    'odata.metadata': metadata,
     value: allPlugins,
     _pageCount: pageNumber - 1  // Not part of the saved data, just for reporting
   };
@@ -112,13 +104,13 @@ async function fetchAllPages(startUrl) {
  * Main function to refresh plugin data
  */
 async function refreshPlugins() {
-  console.log('🔄 Fetching plugin data from XrmToolBox OData feed...');
-  console.log(`   Source: ${ODATA_URL}`);
+  console.log('🔄 Fetching plugin data from XrmToolBox Web API...');
+  console.log(`   Source: ${WEBAPI_URL}`);
   console.log('');
 
   try {
-    // Fetch all pages from OData endpoint
-    const result = await fetchAllPages(ODATA_URL);
+    // Fetch all pages from Web API endpoint
+    const result = await fetchAllPages(WEBAPI_URL);
 
     const pluginCount = result.value.length;
     const pageCount = result._pageCount;
@@ -133,7 +125,6 @@ async function refreshPlugins() {
 
     // Prepare data for saving (remove the _pageCount metadata)
     const data = {
-      'odata.metadata': result['odata.metadata'],
       value: result.value
     };
 
