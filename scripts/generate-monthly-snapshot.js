@@ -54,7 +54,7 @@ function readPlugins() {
   const parsed = JSON.parse(raw);
 
   if (!parsed || !Array.isArray(parsed.value)) {
-    throw new Error('Invalid plugins.json format. Expected OData structure with a value array.');
+    throw new Error('Invalid plugins.json format. Expected a structure with a value array.');
   }
 
   return parsed.value;

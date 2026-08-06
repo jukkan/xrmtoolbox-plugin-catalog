@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Admin script for on-demand plugin data refresh
-# This script fetches the latest plugin data from XrmToolBox OData feed
+# This script fetches the latest plugin data from XrmToolBox Web API
 # and optionally commits the changes.
 #
 # Usage:
