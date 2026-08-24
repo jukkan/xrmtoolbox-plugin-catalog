@@ -21,7 +21,6 @@ export function StorePluginCardLarge({
   const categories = parseCategories(plugin.mctools_categorieslist);
   const rating = parseFloat(plugin.mctools_averagefeedbackratingallversions) || 0;
   const ratingCount = (plugin as any).mctools_totalfeedbackallversion || 0;
-  const isMvp = (plugin as any)['contact-mctools_ismvp'] || false;
   const nugetId = (plugin as any).mctools_nugetid || plugin.mctools_pluginid;
   const gradient = getCategoryGradient(categories);
 
@@ -74,7 +73,6 @@ export function StorePluginCardLarge({
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <AuthorBadge
                 name={plugin.mctools_authors}
-                isMvp={isMvp}
                 showIcon={true}
                 size="md"
               />

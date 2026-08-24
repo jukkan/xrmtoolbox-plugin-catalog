@@ -8,7 +8,7 @@ import { Download, Star, Users, Package, Code2, TrendingUp, Zap } from "lucide-r
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { SEO } from "@/components/SEO";
 import { Plugin } from "@/components/PluginCard";
-import { parseCategories, getPluginMvpStatus, hasMvpMetadata } from "@/utils/pluginUtils";
+import { parseCategories } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
 function useCountUp(target: number, duration = 1800) {
@@ -51,8 +51,6 @@ export function StateOfXrmPage() {
   const stats = useMemo(() => {
     const totalDownloads = plugins.reduce((s, p) => s + (p.mctools_totaldownloadcount || 0), 0);
     const openSource = plugins.filter((p) => p.mctools_isopensource).length;
-    const hasMvpData = hasMvpMetadata(plugins);
-    const mvp = hasMvpData ? plugins.filter((p) => getPluginMvpStatus(p as any)).length : 0;
     const rated = plugins.filter((p) => parseFloat(p.mctools_averagefeedbackratingallversions) > 0);
     const avgRating =
       rated.length > 0
@@ -70,7 +68,7 @@ export function StateOfXrmPage() {
     const updatedLast30 = plugins.filter(
       (p) => p.mctools_latestreleasedate && new Date(p.mctools_latestreleasedate) >= cut30
     ).length;
-    return { totalDownloads, openSource, mvp, avgRating, authors, newLast90, updatedLast30, ratedCount: rated.length, hasMvpData };
+    return { totalDownloads, openSource, avgRating, authors, newLast90, updatedLast30, ratedCount: rated.length };
   }, [plugins]);
 
   const categoryData = useMemo(() => {
@@ -132,9 +130,9 @@ export function StateOfXrmPage() {
     { name: "Open Source", value: stats.openSource },
     { name: "Proprietary", value: plugins.length - stats.openSource },
   ];
-  const mvpPie = [
-    { name: "MVP-authored", value: stats.hasMvpData ? stats.mvp : 0 },
-    { name: "Community", value: stats.hasMvpData ? plugins.length - stats.mvp : plugins.length },
+  const updatedPie = [
+    { name: "Updated", value: stats.updatedLast30 },
+    { name: "Dormant", value: plugins.length - stats.updatedLast30 },
   ];
   const ratedPie = [
     { name: "Rated", value: stats.ratedCount },
@@ -335,12 +333,11 @@ export function StateOfXrmPage() {
                   colors: [C.green, C.gray],
                 },
                 {
-                  title: "MVP-Authored",
-                  subtitle: stats.hasMvpData ? `${stats.mvp} of ${plugins.length} plugins` : "MVP metadata unavailable",
-                  pct: stats.hasMvpData ? Math.round((stats.mvp / plugins.length) * 100) : null,
-                  data: mvpPie,
-                  colors: [C.amber, C.gray],
-                  unavailable: !stats.hasMvpData,
+                  title: "Recently Updated",
+                  subtitle: `${stats.updatedLast30} of ${plugins.length} plugins`,
+                  pct: Math.round((stats.updatedLast30 / plugins.length) * 100),
+                  data: updatedPie,
+                  colors: [C.teal, C.gray],
                 },
                 {
                   title: "User Ratings",
@@ -393,11 +390,6 @@ export function StateOfXrmPage() {
                       </div>
                     ))}
                   </div>
-                  {unavailable && (
-                    <p className="mt-3 text-xs text-muted-foreground max-w-[16rem]">
-                      The public source data does not expose the MVP flag, so this percentage cannot be calculated accurately.
-                    </p>
-                  )}
                 </div>
               ))}
             </div>

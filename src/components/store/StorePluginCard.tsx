@@ -7,7 +7,7 @@ import { DownloadBadge } from "./DownloadBadge";
 import { AuthorBadge } from "./AuthorBadge";
 import { CategoryBadge } from "./CategoryBadge";
 import { OpenSourceBadge } from "./OpenSourceBadge";
-import { parseCategories, formatRelativeDate, getPluginMvpStatus } from "@/utils/pluginUtils";
+import { parseCategories, formatRelativeDate } from "@/utils/pluginUtils";
 
 interface StorePluginCardProps {
   plugin: Plugin;
@@ -23,7 +23,6 @@ export function StorePluginCard({
   const categories = parseCategories(plugin.mctools_categorieslist);
   const rating = parseFloat(plugin.mctools_averagefeedbackratingallversions) || 0;
   const ratingCount = (plugin as any).mctools_totalfeedbackallversion || 0;
-  const isMvp = getPluginMvpStatus(plugin as any);
   const nugetId = (plugin as any).mctools_nugetid || plugin.mctools_pluginid;
 
   return (
@@ -74,7 +73,6 @@ export function StorePluginCard({
           </h3>
           <AuthorBadge
             name={plugin.mctools_authors}
-            isMvp={isMvp}
             showIcon={false}
             size="sm"
           />

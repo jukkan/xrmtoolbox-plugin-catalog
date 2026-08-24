@@ -86,7 +86,7 @@ export const pluginSteps = [
   {
     num: 2,
     title: 'Search or browse',
-    detail: 'Filter by name, author, category, or MVP-created tools'
+    detail: 'Filter by name, author, or category to find the right tool quickly'
   },
   {
     num: 3,
@@ -136,7 +136,7 @@ export const starterPlugins = [
 
 // Pro tips for plugin section
 export const pluginProTips = [
-  'Filter by "MVP" to find tools built by Microsoft MVPs—usually high quality',
+  'Use the category and author filters to narrow your search quickly',
   'Star your favorites for quick access from the home screen',
   'Check "Open Source" filter to find tools you can contribute to',
   'Sort by "Most Downloaded" to find proven, popular tools',
@@ -153,7 +153,7 @@ export const connectionTips = [
 export const faqs = [
   {
     question: 'Who created XrmToolBox?',
-    answer: 'Tanguy Touzard (MVP) created and maintains XrmToolBox. The plugin ecosystem is built by hundreds of community contributors.'
+    answer: 'Tanguy Touzard created and maintains XrmToolBox. The plugin ecosystem is built by hundreds of community contributors.'
   },
   {
     question: 'Is it free?',

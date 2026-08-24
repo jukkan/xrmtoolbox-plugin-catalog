@@ -13,7 +13,6 @@ import {
   getRecentlyUpdated,
   getMostPopular,
   getTopRated,
-  getMvpPlugins,
   filterPlugins
 } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
@@ -46,12 +45,6 @@ export function StorePage() {
   // Get top rated plugins
   const topRated = useMemo(
     () => getTopRated(plugins, 3).slice(0, 15),
-    [plugins]
-  );
-
-  // Get MVP developer plugins
-  const mvpPicks = useMemo(
-    () => getMostPopular(getMvpPlugins(plugins)).slice(0, 15),
     [plugins]
   );
 
@@ -174,14 +167,6 @@ export function StorePage() {
           <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Featured</h2>
           <HeroCarousel plugins={featuredPlugins} />
         </section>
-
-        {/* MVP Developer Picks */}
-        {mvpPicks.length > 0 && (
-          <PluginCarousel
-            title="MVP Developer Picks"
-            plugins={mvpPicks}
-          />
-        )}
       </div>
     </StoreLayout>
   );

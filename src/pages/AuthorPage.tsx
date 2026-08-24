@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Award, Download, Star } from "lucide-react";
+import { ArrowLeft, Download, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -13,7 +13,7 @@ import { Plugin } from "@/components/PluginCard";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
 import { SEO } from "@/components/SEO";
-import { getPluginsByAuthor, sortPlugins, formatDownloads, getPluginMvpStatus } from "@/utils/pluginUtils";
+import { getPluginsByAuthor, sortPlugins, formatDownloads } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
 type SortOption = 'downloads' | 'rating' | 'updated' | 'name';
@@ -34,9 +34,6 @@ export function AuthorPage() {
     if (!author) return [];
     return sortPlugins(getPluginsByAuthor(plugins, author), sortBy);
   }, [plugins, author, sortBy]);
-
-  // Check if author is MVP when the upstream data actually exposes the field.
-  const isMvp = authorPlugins.length > 0 && getPluginMvpStatus(authorPlugins[0] as any);
 
   // Calculate author stats
   const stats = useMemo(() => {
@@ -73,13 +70,13 @@ export function AuthorPage() {
     );
   }
 
-  const title = `${author}${isMvp ? ' (MVP)' : ''} - Plugin Developer`;
+  const title = `${author} - Plugin Developer`;
   const description = `Browse ${authorPlugins.length} XrmToolBox plugin${authorPlugins.length !== 1 ? 's' : ''} by ${author}. ${formatDownloads(stats.totalDownloads)} total downloads${stats.avgRating > 0 ? `, ${stats.avgRating.toFixed(1)} avg rating` : ''}. Power Platform development tools.`;
   const canonical = `/store/author/${encodeURIComponent(author)}`;
 
   const profileSchema = {
     '@context': 'https://schema.org',
-    '@type': isMvp ? 'Person' : 'Organization',
+    '@type': 'Organization',
     name: author,
     url: `https://xrm.jukkan.com${canonical}`,
     ...(stats.avgRating > 0 && {
@@ -98,7 +95,7 @@ export function AuthorPage() {
       <SEO
         title={title}
         description={description}
-        keywords={`${author}, XrmToolBox plugin developer, Power Platform, Dynamics 365, Dataverse${isMvp ? ', MVP' : ''}`}
+        keywords={`${author}, XrmToolBox plugin developer, Power Platform, Dynamics 365, Dataverse`}
         canonical={canonical}
         structuredData={profileSchema}
       />
@@ -127,12 +124,6 @@ export function AuthorPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <h1 className="text-2xl md:text-3xl font-bold">{author}</h1>
-                  {isMvp && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
-                      <Award size={12} className="fill-amber-500" />
-                      MVP
-                    </span>
-                  )}
                 </div>
                 <p className="text-muted-foreground">
                   {authorPlugins.length} plugin{authorPlugins.length !== 1 ? 's' : ''}

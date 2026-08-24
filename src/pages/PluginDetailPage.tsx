@@ -29,8 +29,7 @@ import {
   formatFullDate,
   findPluginByNugetId,
   getPluginsByAuthor,
-  getSimilarPlugins,
-  getPluginMvpStatus
+  getSimilarPlugins
 } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
@@ -81,7 +80,6 @@ export function PluginDetailPage() {
   const categories = parseCategories(plugin.mctools_categorieslist);
   const rating = parseFloat(plugin.mctools_averagefeedbackratingallversions) || 0;
   const ratingCount = (plugin as any).mctools_totalfeedbackallversion || 0;
-  const isMvp = getPluginMvpStatus(plugin as any);
   const xrmVersion = (plugin as any).mctools_xrmtoolboxversiondependency || null;
 
   const isGitHubUrl = (url: string) => url?.toLowerCase().includes('github.com');
@@ -109,7 +107,7 @@ export function PluginDetailPage() {
       priceCurrency: 'USD',
     },
     author: {
-      '@type': isMvp ? 'Person' : 'Organization',
+      '@type': 'Organization',
       name: plugin.mctools_authors,
     },
     aggregateRating: rating > 0 ? {
@@ -185,7 +183,6 @@ export function PluginDetailPage() {
             <div className="mt-2">
               <AuthorBadge
                 name={plugin.mctools_authors}
-                isMvp={isMvp}
                 showIcon={true}
                 size="md"
                 onClick={() => navigate(`/store/author/${encodeURIComponent(plugin.mctools_authors)}`)}
