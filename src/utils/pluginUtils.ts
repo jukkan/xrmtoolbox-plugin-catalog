@@ -101,7 +101,7 @@ export function filterPlugins(plugins: Plugin[], filters: {
     if (filters.category && !parseCategories(p.mctools_categorieslist).includes(filters.category)) return false;
     if (filters.author && p.mctools_authors !== filters.author) return false;
     if (filters.openSourceOnly && !p.mctools_isopensource) return false;
-    if (filters.mvpOnly && !(p as any)['contact-mctools_ismvp']) return false;
+    if (filters.mvpOnly && !getPluginMvpStatus(p as any)) return false;
     if (filters.search) {
       const q = filters.search.toLowerCase();
       const searchable = `${p.mctools_name} ${p.mctools_description} ${p.mctools_authors}`.toLowerCase();
@@ -187,9 +187,37 @@ export function getOpenSourcePlugins(plugins: Plugin[]): Plugin[] {
   return plugins.filter(p => p.mctools_isopensource);
 }
 
+// Safely read whether a plugin or author is marked as an MVP.
+// The public XrmToolBox API currently does not expose this flag in the plugin dataset,
+// so missing metadata should not be treated as a valid false value.
+export function getPluginMvpStatus(plugin: Partial<Plugin> & Record<string, any>): boolean {
+  const values = [
+    plugin['contact-mctools_ismvp'],
+    plugin.contact_mctools_ismvp,
+    plugin.mctools_ismvp,
+    plugin['contact-mctools_ismvp@OData.Community.Display.V1.FormattedValue'],
+    plugin['contact_mctools_ismvp@OData.Community.Display.V1.FormattedValue'],
+    plugin['mctools_ismvp@OData.Community.Display.V1.FormattedValue'],
+  ];
+
+  return values.some((value) => {
+    if (typeof value === 'boolean') return value;
+    if (typeof value === 'number') return value === 1;
+    if (typeof value === 'string') {
+      const normalized = value.trim().toLowerCase();
+      return normalized === 'true' || normalized === 'yes' || normalized === '1';
+    }
+    return false;
+  });
+}
+
+export function hasMvpMetadata(plugins: Plugin[]): boolean {
+  return plugins.some((p) => getPluginMvpStatus(p as any));
+}
+
 // Get MVP developer plugins
 export function getMvpPlugins(plugins: Plugin[]): Plugin[] {
-  return plugins.filter(p => (p as any)['contact-mctools_ismvp']);
+  return plugins.filter(p => getPluginMvpStatus(p as any));
 }
 
 // Get plugins sorted by downloads

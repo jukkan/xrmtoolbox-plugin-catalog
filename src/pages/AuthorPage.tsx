@@ -13,7 +13,7 @@ import { Plugin } from "@/components/PluginCard";
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { StorePluginCard } from "@/components/store/StorePluginCard";
 import { SEO } from "@/components/SEO";
-import { getPluginsByAuthor, sortPlugins, formatDownloads } from "@/utils/pluginUtils";
+import { getPluginsByAuthor, sortPlugins, formatDownloads, getPluginMvpStatus } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
 type SortOption = 'downloads' | 'rating' | 'updated' | 'name';
@@ -35,8 +35,8 @@ export function AuthorPage() {
     return sortPlugins(getPluginsByAuthor(plugins, author), sortBy);
   }, [plugins, author, sortBy]);
 
-  // Check if author is MVP
-  const isMvp = authorPlugins.length > 0 && (authorPlugins[0] as any)['contact-mctools_ismvp'];
+  // Check if author is MVP when the upstream data actually exposes the field.
+  const isMvp = authorPlugins.length > 0 && getPluginMvpStatus(authorPlugins[0] as any);
 
   // Calculate author stats
   const stats = useMemo(() => {

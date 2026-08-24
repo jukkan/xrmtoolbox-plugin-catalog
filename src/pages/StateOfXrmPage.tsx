@@ -8,7 +8,7 @@ import { Download, Star, Users, Package, Code2, TrendingUp, Zap } from "lucide-r
 import { StoreLayout } from "@/components/store/StoreLayout";
 import { SEO } from "@/components/SEO";
 import { Plugin } from "@/components/PluginCard";
-import { parseCategories } from "@/utils/pluginUtils";
+import { parseCategories, getPluginMvpStatus, hasMvpMetadata } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
 function useCountUp(target: number, duration = 1800) {
@@ -51,7 +51,8 @@ export function StateOfXrmPage() {
   const stats = useMemo(() => {
     const totalDownloads = plugins.reduce((s, p) => s + (p.mctools_totaldownloadcount || 0), 0);
     const openSource = plugins.filter((p) => p.mctools_isopensource).length;
-    const mvp = plugins.filter((p) => (p as any)["contact-mctools_ismvp"]).length;
+    const hasMvpData = hasMvpMetadata(plugins);
+    const mvp = hasMvpData ? plugins.filter((p) => getPluginMvpStatus(p as any)).length : 0;
     const rated = plugins.filter((p) => parseFloat(p.mctools_averagefeedbackratingallversions) > 0);
     const avgRating =
       rated.length > 0
@@ -69,7 +70,7 @@ export function StateOfXrmPage() {
     const updatedLast30 = plugins.filter(
       (p) => p.mctools_latestreleasedate && new Date(p.mctools_latestreleasedate) >= cut30
     ).length;
-    return { totalDownloads, openSource, mvp, avgRating, authors, newLast90, updatedLast30, ratedCount: rated.length };
+    return { totalDownloads, openSource, mvp, avgRating, authors, newLast90, updatedLast30, ratedCount: rated.length, hasMvpData };
   }, [plugins]);
 
   const categoryData = useMemo(() => {
@@ -132,8 +133,8 @@ export function StateOfXrmPage() {
     { name: "Proprietary", value: plugins.length - stats.openSource },
   ];
   const mvpPie = [
-    { name: "MVP-authored", value: stats.mvp },
-    { name: "Community", value: plugins.length - stats.mvp },
+    { name: "MVP-authored", value: stats.hasMvpData ? stats.mvp : 0 },
+    { name: "Community", value: stats.hasMvpData ? plugins.length - stats.mvp : plugins.length },
   ];
   const ratedPie = [
     { name: "Rated", value: stats.ratedCount },
@@ -335,10 +336,11 @@ export function StateOfXrmPage() {
                 },
                 {
                   title: "MVP-Authored",
-                  subtitle: `${stats.mvp} of ${plugins.length} plugins`,
-                  pct: Math.round((stats.mvp / plugins.length) * 100),
+                  subtitle: stats.hasMvpData ? `${stats.mvp} of ${plugins.length} plugins` : "MVP metadata unavailable",
+                  pct: stats.hasMvpData ? Math.round((stats.mvp / plugins.length) * 100) : null,
                   data: mvpPie,
                   colors: [C.amber, C.gray],
+                  unavailable: !stats.hasMvpData,
                 },
                 {
                   title: "User Ratings",
@@ -347,7 +349,7 @@ export function StateOfXrmPage() {
                   data: ratedPie,
                   colors: [C.blue, C.gray],
                 },
-              ] as const).map(({ title, subtitle, pct, data, colors }) => (
+              ] as const).map(({ title, subtitle, pct, data, colors, unavailable }) => (
                 <div key={title} className="rounded-xl border bg-card p-6 flex flex-col items-center text-center">
                   <h3 className="font-semibold text-lg">{title}</h3>
                   <p className="text-sm text-muted-foreground mt-0.5 mb-2">{subtitle}</p>
@@ -376,7 +378,7 @@ export function StateOfXrmPage() {
                     {/* Centre label */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <span className="text-3xl font-black" style={{ color: colors[0] }}>
-                        {pct}%
+                        {unavailable ? "—" : `${pct}%`}
                       </span>
                     </div>
                   </div>
@@ -391,6 +393,11 @@ export function StateOfXrmPage() {
                       </div>
                     ))}
                   </div>
+                  {unavailable && (
+                    <p className="mt-3 text-xs text-muted-foreground max-w-[16rem]">
+                      The public source data does not expose the MVP flag, so this percentage cannot be calculated accurately.
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

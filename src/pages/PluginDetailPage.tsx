@@ -29,7 +29,8 @@ import {
   formatFullDate,
   findPluginByNugetId,
   getPluginsByAuthor,
-  getSimilarPlugins
+  getSimilarPlugins,
+  getPluginMvpStatus
 } from "@/utils/pluginUtils";
 import pluginsData from "@/data/plugins.json";
 
@@ -80,7 +81,7 @@ export function PluginDetailPage() {
   const categories = parseCategories(plugin.mctools_categorieslist);
   const rating = parseFloat(plugin.mctools_averagefeedbackratingallversions) || 0;
   const ratingCount = (plugin as any).mctools_totalfeedbackallversion || 0;
-  const isMvp = (plugin as any)['contact-mctools_ismvp'] || false;
+  const isMvp = getPluginMvpStatus(plugin as any);
   const xrmVersion = (plugin as any).mctools_xrmtoolboxversiondependency || null;
 
   const isGitHubUrl = (url: string) => url?.toLowerCase().includes('github.com');
