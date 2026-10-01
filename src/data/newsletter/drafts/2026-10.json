@@ -1,0 +1,54 @@
+{
+  "month": "2026-10",
+  "generatedAt": "2026-10-01T14:54:07.145Z",
+  "status": "draft",
+  "sourceSnapshot": "src/data/monthly/2026-10.json",
+  "highlights": [
+    "New plugins this month: 0",
+    "Updated plugins this month: 1",
+    "Verify highlighted plugins against release notes before publish."
+  ],
+  "topNewPlugins": [],
+  "topUpdatedPlugins": [
+    {
+      "rank": 1,
+      "pluginId": "2112cc76-519c-f111-85cd-000d3ada56b9",
+      "name": "Dataverse Usage Explorer",
+      "author": "Lucas Verissimo",
+      "rationale": "#1 was updated this month by community interest with 844 total downloads with a 0.0/5 rating."
+    }
+  ],
+  "editorialNotes": [
+    "AI-enriched draft generated automatically from monthly snapshot rankings.",
+    "Replace rationale text with editor-approved commentary before moving to reviewed."
+  ],
+  "aiClaims": [
+    {
+      "field": "topUpdatedPlugins[0].rationale",
+      "claim": "#1 was updated this month by community interest with 844 total downloads with a 0.0/5 rating.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-10.json"
+        }
+      ]
+    },
+    {
+      "field": "editorialNotes[0]",
+      "claim": "AI-enriched draft generated automatically from monthly snapshot rankings.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-10.json"
+        }
+      ]
+    },
+    {
+      "field": "editorialNotes[1]",
+      "claim": "Replace rationale text with editor-approved commentary before moving to reviewed.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-10.json"
+        }
+      ]
+    }
+  ]
+}
