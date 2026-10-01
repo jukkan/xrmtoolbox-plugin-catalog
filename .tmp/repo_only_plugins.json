@@ -1,0 +1,324 @@
+[
+  {
+    "mctools_name": "Xrm.RecordsRestorator.Plugin",
+    "mctools_authors": "Kostiantyn Babych",
+    "mctools_nugetid": "Xrm.RecordsRestorator.Plugin",
+    "mctools_projecturl": "https://github.com/k-babych-ua/xrm-records-restorator",
+    "mctools_version": "1.0.0.2"
+  },
+  {
+    "mctools_name": "DURecordExporter",
+    "mctools_authors": "DU IT Consulting",
+    "mctools_nugetid": "DURecordExporter",
+    "mctools_projecturl": null,
+    "mctools_version": "1.0.0"
+  },
+  {
+    "mctools_name": "Theme Customizer",
+    "mctools_authors": "Thomas Moreau",
+    "mctools_nugetid": "ThemeCustomizer",
+    "mctools_projecturl": "https://github.com/Dragimagik/XrmToolBoxTool/tree/master",
+    "mctools_version": "1.2024.10.10"
+  },
+  {
+    "mctools_name": "Audit History Editor",
+    "mctools_authors": "Tran Phuong",
+    "mctools_nugetid": "AuditHistoryEditor",
+    "mctools_projecturl": "https://github.com/phuongtvn/Audit-History-Editor",
+    "mctools_version": "1.0.3"
+  },
+  {
+    "mctools_name": "ActionGenerator",
+    "mctools_authors": "React",
+    "mctools_nugetid": "React.Util.ActionGenerator",
+    "mctools_projecturl": "https://www.google.com/",
+    "mctools_version": "1.0.0"
+  },
+  {
+    "mctools_name": "Data Import ++ BETA",
+    "mctools_authors": "Joseph Merhej and Andrew Howes",
+    "mctools_nugetid": "AndrewHowes.DataImportSharp",
+    "mctools_projecturl": "https://github.com/YesWeCandrew/XTBPlugins.DataImport",
+    "mctools_version": "1.2024.9123.26203"
+  },
+  {
+    "mctools_name": "Advanced Plugin Trace Log Finder",
+    "mctools_authors": "Mukesh Kumar (Krutix.com)",
+    "mctools_nugetid": "Krutix.XrmToolBox.PluginTraceLogFinder",
+    "mctools_projecturl": "https://krutix.com/project/advanced-plugin-trace-log-finder",
+    "mctools_version": "1.0.0.3"
+  },
+  {
+    "mctools_name": "Access Team Studio",
+    "mctools_authors": "Deepesh Somani",
+    "mctools_nugetid": "AccessTeamStudio",
+    "mctools_projecturl": "https://github.com/Deepeshsomani/Access-Team-Studio",
+    "mctools_version": "4.0.0"
+  },
+  {
+    "mctools_name": "Email Template Manager",
+    "mctools_authors": "Mohamed Rasheed (ITLec)",
+    "mctools_nugetid": "ITLec.EmailTemplateManager",
+    "mctools_projecturl": "http://www.itlec.com/2017/08/email-template-manager.html",
+    "mctools_version": "1.2017.9.8"
+  },
+  {
+    "mctools_name": "Chart Transfer Tool",
+    "mctools_authors": "Bram Colpaert @C-Clear Partners",
+    "mctools_nugetid": "Colso.Xrm.ChartTransferTool",
+    "mctools_projecturl": "https://github.com/bcolpaert/Colso.Xrm.ChartTransferTool",
+    "mctools_version": "1.2018.3.3"
+  },
+  {
+    "mctools_name": "Solution Packager Tool",
+    "mctools_authors": "Abhishek Kumar",
+    "mctools_nugetid": "SolutionPackagerTool",
+    "mctools_projecturl": "https://github.com/A99bhishek/SolutionPackagerTool",
+    "mctools_version": "1.2017.1.5"
+  },
+  {
+    "mctools_name": "GT Bulk Record Assigner",
+    "mctools_authors": "Gennaro Eduardo Tangari",
+    "mctools_nugetid": "Tangari.XrmToolBoxExtensions.BulkRecordAssigner",
+    "mctools_projecturl": "https://github.com/getangar/GTBulkRecordAssigner",
+    "mctools_version": "1.1.0.4"
+  },
+  {
+    "mctools_name": "GT Solution Importer",
+    "mctools_authors": "Gennaro Eduardo Tangari",
+    "mctools_nugetid": "Tangari.XrmToolBoxExtensions.SolutionImporter",
+    "mctools_projecturl": "https://github.com/getangar/GTSolutionImporter",
+    "mctools_version": "1.0.0.8"
+  },
+  {
+    "mctools_name": "GT Users Creator",
+    "mctools_authors": "Gennaro Eduardo Tangari",
+    "mctools_nugetid": "Tangari.XrmToolBoxExtensions.UsersCreator",
+    "mctools_projecturl": "https://github.com/getangar/GTUsersCreator",
+    "mctools_version": "1.0.0"
+  },
+  {
+    "mctools_name": "CRM Workflow Explorer",
+    "mctools_authors": "Hicham Wahbi",
+    "mctools_nugetid": "MsCrmTools.WorkflowExplorer",
+    "mctools_projecturl": "https://github.com/hicham73/CrmWorkflowExplorer",
+    "mctools_version": "1.2016.0.5"
+  },
+  {
+    "mctools_name": "Reset UCI Dashboard Defaults",
+    "mctools_authors": "TechLabs London - Mohamed Mostafa & Mark Alber",
+    "mctools_nugetid": "ResetUCIDashboard",
+    "mctools_projecturl": "http://techlabs.london/",
+    "mctools_version": "1.0.0.2"
+  },
+  {
+    "mctools_name": "Entites Audit Editor For XrmToolBox",
+    "mctools_authors": "gad chriqui Rotem Dynamics",
+    "mctools_nugetid": "EntitesAuditEditorForXrmToolBox",
+    "mctools_projecturl": null,
+    "mctools_version": "1.0.0.6"
+  },
+  {
+    "mctools_name": "Entity  MetaData editor",
+    "mctools_authors": "gad chriqui Rotem Dynamics",
+    "mctools_nugetid": "MetaDataEntityPropertiesEditorForXrmToolBox",
+    "mctools_projecturl": "https://gist.github.com/gadysh/4eb9fe4611ca530a0373608d03fca1da",
+    "mctools_version": "1.0.0.3"
+  },
+  {
+    "mctools_name": "Check Lists",
+    "mctools_authors": "Pieter Van den Bergh; Nathan Vanblaere",
+    "mctools_nugetid": "XrmToolboxHackaton.XrmSanityCheck",
+    "mctools_projecturl": "https://github.com/NathanSushi/XrmSanityCheck",
+    "mctools_version": "1.0.2"
+  },
+  {
+    "mctools_name": "MsCrmTools Environment Change Scanner",
+    "mctools_authors": "Ramesh YELAMANENI",
+    "mctools_nugetid": "RYelamaneni.EnvironmentChangeScanner",
+    "mctools_projecturl": "https://github.com/RameshYelamaneni/MsCrmTools.EnvironmentChangeScanner",
+    "mctools_version": "2.4.3"
+  },
+  {
+    "mctools_name": "Power Automate Run History Viewer",
+    "mctools_authors": "SHAFI MUHAMMAD SHAH",
+    "mctools_nugetid": "PowerAutomateRunHistoryViewer",
+    "mctools_projecturl": "https://github.com/glanisyed353/MyXrmToolBoxTool1",
+    "mctools_version": "1.0.0"
+  },
+  {
+    "mctools_name": "JSON to Dataverse",
+    "mctools_authors": "Jaxi Tank",
+    "mctools_nugetid": "JaxiTank.JSONtoDataverse",
+    "mctools_projecturl": "https://jaxitank.com/en/",
+    "mctools_version": "1.0.0"
+  },
+  {
+    "mctools_name": "Record URL Generator",
+    "mctools_authors": "SamuelSIMON",
+    "mctools_nugetid": "RecordUrlGeneratorTool",
+    "mctools_projecturl": "https://github.com/samsim0n/XrmToolbox.RecordUrlGenerator",
+    "mctools_version": "1.2026.3.14"
+  },
+  {
+    "mctools_name": "O365 License Details",
+    "mctools_authors": "Vineet Tripathi",
+    "mctools_nugetid": "GetOffice365License",
+    "mctools_projecturl": "https://www.nuget.org/packages/GetOffice365License/",
+    "mctools_version": "2.7.0"
+  },
+  {
+    "mctools_name": "Access Team Viewer",
+    "mctools_authors": "Tisski Ltd",
+    "mctools_nugetid": "Tisski.AccessTeamViewer",
+    "mctools_projecturl": "https://github.com/MattTrinder1/XrmToolBox.AccessTeamViewer",
+    "mctools_version": "1.2019.1.6"
+  },
+  {
+    "mctools_name": "Bulk Update Entity Change Tracking",
+    "mctools_authors": "Cobalt",
+    "mctools_nugetid": "Cobalt.XrmToolbox.EntityUpdater",
+    "mctools_projecturl": "https://github.com/TheCRMLab/XrmToolbox-Bulk-Update-Entity-Definitions",
+    "mctools_version": "1.0.1"
+  },
+  {
+    "mctools_name": "XRTSoft.PowerApps.PowerFind",
+    "mctools_authors": "Rob Tilling",
+    "mctools_nugetid": "XRTSoft.PowerApps.PowerFind",
+    "mctools_projecturl": "https://github.com/glosrob/PowerApps.PowerFind",
+    "mctools_version": "2023.2.3.3"
+  },
+  {
+    "mctools_name": "Attributes Creator",
+    "mctools_authors": "Chetan Patil",
+    "mctools_nugetid": "AttributesCreator",
+    "mctools_projecturl": "https://github.com/users/chetankumarpatil/projects/1",
+    "mctools_version": "1.0.2"
+  },
+  {
+    "mctools_name": "One Attribute Bulk Upload",
+    "mctools_authors": "Jigesh Shah",
+    "mctools_nugetid": "OneAttributeBulkUpload",
+    "mctools_projecturl": "https://github.com/jshah14/OneAttributeBulkUpdateCrm",
+    "mctools_version": "1.3.0"
+  },
+  {
+    "mctools_name": "Metadata++",
+    "mctools_authors": "Tristan Polkinghorne",
+    "mctools_nugetid": "MetadataPlusPlus",
+    "mctools_projecturl": "https://sd1.microsoftcrmportals.com/",
+    "mctools_version": "1.0.1"
+  },
+  {
+    "mctools_name": "Xrm XSD Schema Validation",
+    "mctools_authors": "Mohamed Rasheed (ITLec)",
+    "mctools_nugetid": "ITLec.Xrm.SchemaValidation",
+    "mctools_projecturl": "http://www.itlec.com/2019/04/xrm-xsd-schema-validation.html",
+    "mctools_version": "1.2019.501.3"
+  },
+  {
+    "mctools_name": "CSV Importer",
+    "mctools_authors": "Youssef K.",
+    "mctools_nugetid": "YK.XrmToolBox.CSVImporter",
+    "mctools_projecturl": "https://github.com/K-Youssef/CSV-Importer",
+    "mctools_version": "0.1.0"
+  },
+  {
+    "mctools_name": "CsvToFilters",
+    "mctools_authors": "Yonatan Cohavi",
+    "mctools_nugetid": "CsvToFilters",
+    "mctools_projecturl": "https://github.com/YonatanCohavi/xrmtoolbox_plugins",
+    "mctools_version": "1.2019.0.2"
+  },
+  {
+    "mctools_name": "Connection updater",
+    "mctools_authors": "Rolf Stifter",
+    "mctools_nugetid": "StiRo.XrmToolBox.ConnectionUpdater",
+    "mctools_projecturl": "https://github.com/rolf-stifter/ConnectionUpdater",
+    "mctools_version": "1.0.0"
+  },
+  {
+    "mctools_name": "Advanced FetchXML Tester",
+    "mctools_authors": "Mohammed Saleh Ghoname",
+    "mctools_nugetid": "MaxCode.Xrm.AdvancedFetchXMLTesterPlugin",
+    "mctools_projecturl": "https://www.linkedin.com/hp/update/6271460867536232448",
+    "mctools_version": "1.0.0.4"
+  },
+  {
+    "mctools_name": "Advanced Data Manager",
+    "mctools_authors": "Mohamed Saleh Ghoname",
+    "mctools_nugetid": "MSG.XRM.AdvancedDataManager",
+    "mctools_projecturl": "https://www.nuget.org/packages/MSG.XRM.AdvancedDataManager/",
+    "mctools_version": "1.20.603.1"
+  },
+  {
+    "mctools_name": "XrmToolBox FiddlerAutoResponder",
+    "mctools_authors": "ambek.net",
+    "mctools_nugetid": "XrmToolboxFiddlerAutoResponder",
+    "mctools_projecturl": "https://github.com/ambek/XrmToolboxFiddlerAutoResponder",
+    "mctools_version": "1.0.3"
+  },
+  {
+    "mctools_name": "Your MS Teams - Integrated",
+    "mctools_authors": "NORRIQ Belgium",
+    "mctools_nugetid": "Norriq.XrmToolBox.YourMSTeamsIntegrated",
+    "mctools_projecturl": "http://www.norriq.be/",
+    "mctools_version": "1.1.20171.3"
+  },
+  {
+    "mctools_name": "Segment Members Import",
+    "mctools_authors": "Jennifer Sarkis",
+    "mctools_nugetid": "SegmentMembersImport",
+    "mctools_projecturl": "https://github.com/JenniferSarkis08/SegmentMembersImport",
+    "mctools_version": "1.2022.1.1"
+  },
+  {
+    "mctools_name": "User Audit Summary",
+    "mctools_authors": "Vilas Magar",
+    "mctools_nugetid": "UserAuditViewer-VRM",
+    "mctools_projecturl": "https://community.dynamics.com/crm/b/crm2016toolsandaddons",
+    "mctools_version": "1.0.9"
+  },
+  {
+    "mctools_name": "Portal Metadata Translation Manager",
+    "mctools_authors": "Oliver Rodrigues",
+    "mctools_nugetid": "Portals.MetadataTranslationManager",
+    "mctools_projecturl": "https://github.com/oliverfrodrigues/OliverRodrigues365Tools",
+    "mctools_version": "1.0.1"
+  },
+  {
+    "mctools_name": "Entity Privilege Copy Tool",
+    "mctools_authors": "Ray Gan",
+    "mctools_nugetid": "EntityPrivilegeCopy",
+    "mctools_projecturl": "https://github.com/ranistar/EntityPrivilegeCopy",
+    "mctools_version": "0.2.0"
+  },
+  {
+    "mctools_name": "Attachments Management",
+    "mctools_authors": "Jeremy Hadjedj",
+    "mctools_nugetid": "AttachmentsManagement",
+    "mctools_projecturl": "https://github.com/jeremyhadjedj/AttachmentsManagement",
+    "mctools_version": "1.0.2"
+  },
+  {
+    "mctools_name": "DateTime Behavior Modifier",
+    "mctools_authors": "Om Khatri",
+    "mctools_nugetid": "MsTools.DateTimeBehaviorModifier",
+    "mctools_projecturl": "https://github.com/khatriom44/DateTimeBehaviorModifier",
+    "mctools_version": "1.0.6"
+  },
+  {
+    "mctools_name": "Bypass Logic Column Updater",
+    "mctools_authors": "naresh.k.arvapalli",
+    "mctools_nugetid": "BypassLogicColumnUpdater",
+    "mctools_projecturl": "https://github.com/NareshD365/Dynamics365/tree/main",
+    "mctools_version": "1.2024.0.1"
+  },
+  {
+    "mctools_name": "Solution Management (err403)",
+    "mctools_authors": "err403",
+    "mctools_nugetid": "err403.SolutionManagment",
+    "mctools_projecturl": "https://github.com/garethcheyne/XrmToolkit.SolutionManagment",
+    "mctools_version": "1.2026.4.11"
+  }
+]

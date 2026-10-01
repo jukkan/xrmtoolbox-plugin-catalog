@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(gh run *)",
+      "Bash(gh api *)",
+      "Bash(npm ci *)",
+      "Bash(curl *)"
+    ]
+  }
+}

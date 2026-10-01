@@ -23,6 +23,17 @@ const __dirname = path.dirname(__filename);
 
 const WEBAPI_URL = 'https://www.xrmtoolbox.com/_api/mctools_plugins';
 const OUTPUT_PATH = path.join(__dirname, '..', 'src', 'data', 'plugins.json');
+const PUBLIC_STATUSCODE = 180000000;
+
+function isPublicPlugin(plugin) {
+  if (!plugin) return false;
+
+  const statusCode = Number(plugin.statuscode ?? plugin.statuscodeValue ?? 0);
+  const stateCode = Number(plugin.statecode ?? 0);
+  const validated = plugin.mctools_validated;
+
+  return statusCode === PUBLIC_STATUSCODE && stateCode === 0 && validated !== false;
+}
 
 /**
  * Fetch data from URL using native https module
@@ -111,11 +122,14 @@ async function refreshPlugins() {
   try {
     // Fetch all pages from Web API endpoint
     const result = await fetchAllPages(WEBAPI_URL);
+    const publicPlugins = result.value.filter(isPublicPlugin);
+    const filteredOutCount = result.value.length - publicPlugins.length;
 
-    const pluginCount = result.value.length;
+    const pluginCount = publicPlugins.length;
     const pageCount = result._pageCount;
     console.log('');
-    console.log(`✅ Successfully fetched all ${pluginCount} plugins from ${pageCount} page(s)`);
+    console.log(`✅ Successfully fetched ${result.value.length} plugins from ${pageCount} page(s)`);
+    console.log(`🔎 Filtered out ${filteredOutCount} rejected/inactive entries; kept ${pluginCount} public validated plugins (statuscode ${PUBLIC_STATUSCODE})`);
 
     // Ensure output directory exists
     const outputDir = path.dirname(OUTPUT_PATH);
@@ -125,7 +139,7 @@ async function refreshPlugins() {
 
     // Prepare data for saving (remove the _pageCount metadata)
     const data = {
-      value: result.value
+      value: publicPlugins
     };
 
     // Write the data to file with proper formatting
@@ -136,7 +150,7 @@ async function refreshPlugins() {
     const stats = {
       total: pluginCount,
       openSource: data.value.filter(p => p.mctools_isopensource).length,
-      withRating: data.value.filter(p => parseFloat(p.mctools_averagefeedbackratingallversions) > 0).length
+      withRating: data.value.filter(p => parseFloat(p.mctools_averagefeedbackratingallversions || '0') > 0).length
     };
 
     console.log('\n📊 Statistics:');
