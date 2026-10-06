@@ -23931,7 +23931,7 @@
       "mctools_files": "ExportMultipleSecurityRoles.nuspec\r\nREADME.md\r\nimages/icon-32.png\r\nlib/net48/Plugins/ExportMultipleSecurityRoles.dll\r\n.signature.p7s\r\n"
     },
     {
-      "@odata.etag": "W/\"332844593\"",
+      "@odata.etag": "W/\"333367329\"",
       "mctools_authors": "Rohan Goel",
       "mctools_xrmtoolboxversiondependency": "1.2023.12.68",
       "mctools_firstreleasedate@OData.Community.Display.V1.FormattedValue": "9/26/2026",
@@ -23970,8 +23970,8 @@
       "mctools_requirelicenseacceptance@OData.Community.Display.V1.FormattedValue": "No",
       "mctools_requirelicenseacceptance": false,
       "mctools_name": "Power Pages Editor (Portex)",
-      "modifiedon@OData.Community.Display.V1.FormattedValue": "10/1/2026 6:33 AM",
-      "modifiedon": "2026-10-01T06:33:53Z",
+      "modifiedon@OData.Community.Display.V1.FormattedValue": "10/5/2026 12:22 PM",
+      "modifiedon": "2026-10-05T12:22:35Z",
       "mctools_averagefeedbackratingallversions@OData.Community.Display.V1.FormattedValue": "0.00",
       "mctools_averagefeedbackratingallversions": 0,
       "mctools_projecturl": "https://portex.mockit.co.in/",
@@ -27522,7 +27522,7 @@
       "mctools_files": "VerseOps.XrmToolBox.nuspec\r\nLICENSE\r\nREADME.md\r\nicon.png\r\nlib/net48/Plugins/VerseOps.XrmToolBox.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/Microsoft.Identity.Client.Extensions.Msal.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/Microsoft.Identity.Client.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/Microsoft.IdentityModel.Abstractions.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/VerseOps.Api.Core.dll\r\n.signature.p7s\r\n"
     },
     {
-      "@odata.etag": "W/\"332847250\"",
+      "@odata.etag": "W/\"333548040\"",
       "mctools_authors": "Abhishek Pratap Singh",
       "mctools_xrmtoolboxversiondependency": "1.2025.10.74",
       "mctools_firstreleasedate@OData.Community.Display.V1.FormattedValue": "6/14/2026",
@@ -27561,8 +27561,8 @@
       "mctools_requirelicenseacceptance@OData.Community.Display.V1.FormattedValue": "No",
       "mctools_requirelicenseacceptance": false,
       "mctools_name": "DataMigrationToolbyXTB",
-      "modifiedon@OData.Community.Display.V1.FormattedValue": "10/1/2026 3:02 PM",
-      "modifiedon": "2026-10-01T15:02:16Z",
+      "modifiedon@OData.Community.Display.V1.FormattedValue": "10/6/2026 4:48 AM",
+      "modifiedon": "2026-10-06T04:48:31Z",
       "mctools_averagefeedbackratingallversions@OData.Community.Display.V1.FormattedValue": "5.00",
       "mctools_averagefeedbackratingallversions": 5,
       "mctools_projecturl": "https://github.com/abhishek9456/DataMigrationToolbyXTB",
