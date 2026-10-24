@@ -28971,7 +28971,7 @@
       "mctools_files": "VerseOps.XrmToolBox.nuspec\r\nLICENSE\r\nREADME.md\r\nicon.png\r\nlib/net48/Plugins/VerseOps.XrmToolBox.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/Microsoft.Identity.Client.Extensions.Msal.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/Microsoft.Identity.Client.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/Microsoft.IdentityModel.Abstractions.dll\r\nlib/net48/Plugins/VerseOps.XrmToolBox/VerseOps.Api.Core.dll\r\n.signature.p7s\r\n"
     },
     {
-      "@odata.etag": "W/\"333548040\"",
+      "@odata.etag": "W/\"335968735\"",
       "mctools_authors": "Abhishek Pratap Singh",
       "mctools_xrmtoolboxversiondependency": "1.2025.10.74",
       "mctools_firstreleasedate@OData.Community.Display.V1.FormattedValue": "6/14/2026",
@@ -28982,8 +28982,8 @@
       "_createdby_value@Microsoft.Dynamics.CRM.lookuplogicalname": "systemuser",
       "_createdby_value": "cb98495b-16a0-ed11-aad1-0022489bd56e",
       "mctools_latestversionid": "{2791c442-0fbd-f111-aaaf-000d3ab9fd47}",
-      "mctools_totalfeedbackallversion@OData.Community.Display.V1.FormattedValue": "3",
-      "mctools_totalfeedbackallversion": 3,
+      "mctools_totalfeedbackallversion@OData.Community.Display.V1.FormattedValue": "4",
+      "mctools_totalfeedbackallversion": 4,
       "_modifiedby_value@OData.Community.Display.V1.FormattedValue": "SYSTEM",
       "_modifiedby_value@Microsoft.Dynamics.CRM.lookuplogicalname": "systemuser",
       "_modifiedby_value": "79a234b8-e80a-4a97-b15b-ce91766c42c0",
