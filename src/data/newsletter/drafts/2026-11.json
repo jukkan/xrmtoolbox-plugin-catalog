@@ -1,0 +1,70 @@
+{
+  "month": "2026-11",
+  "generatedAt": "2026-11-01T14:35:37.266Z",
+  "status": "draft",
+  "sourceSnapshot": "src/data/monthly/2026-11.json",
+  "highlights": [
+    "New plugins this month: 0",
+    "Updated plugins this month: 2",
+    "Verify highlighted plugins against release notes before publish."
+  ],
+  "topNewPlugins": [],
+  "topUpdatedPlugins": [
+    {
+      "rank": 1,
+      "pluginId": "7affb6d2-6451-f111-b254-6045bde14301",
+      "name": "Field Change Monitor",
+      "author": "Lucas Verissimo",
+      "rationale": "#1 was updated this month by community interest with 1,249 total downloads with a 0.0/5 rating."
+    },
+    {
+      "rank": 2,
+      "pluginId": "2112cc76-519c-f111-85cd-000d3ada56b9",
+      "name": "Dataverse Usage Explorer",
+      "author": "Lucas Verissimo",
+      "rationale": "#2 was updated this month by community interest with 1,168 total downloads with a 0.0/5 rating."
+    }
+  ],
+  "editorialNotes": [
+    "AI-enriched draft generated automatically from monthly snapshot rankings.",
+    "Replace rationale text with editor-approved commentary before moving to reviewed."
+  ],
+  "aiClaims": [
+    {
+      "field": "topUpdatedPlugins[0].rationale",
+      "claim": "#1 was updated this month by community interest with 1,249 total downloads with a 0.0/5 rating.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-11.json"
+        }
+      ]
+    },
+    {
+      "field": "topUpdatedPlugins[1].rationale",
+      "claim": "#2 was updated this month by community interest with 1,168 total downloads with a 0.0/5 rating.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-11.json"
+        }
+      ]
+    },
+    {
+      "field": "editorialNotes[0]",
+      "claim": "AI-enriched draft generated automatically from monthly snapshot rankings.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-11.json"
+        }
+      ]
+    },
+    {
+      "field": "editorialNotes[1]",
+      "claim": "Replace rationale text with editor-approved commentary before moving to reviewed.",
+      "references": [
+        {
+          "citation": "Source snapshot: src/data/monthly/2026-11.json"
+        }
+      ]
+    }
+  ]
+}
